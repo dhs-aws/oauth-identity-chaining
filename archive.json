@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-01-11T01:03:37.472048+00:00",
+  "timestamp": "2024-01-14T01:08:11.416243+00:00",
   "repo": "oauth-wg/oauth-identity-chaining",
   "labels": [
     {
@@ -601,7 +601,7 @@
       "labels": [],
       "body": "[Section 2.4.3](https://www.ietf.org/archive/id/draft-schwenkschuster-oauth-identity-chaining-00.html#section-2.4.3) says this:\r\n\r\n> The issued_token_type parameter in the response indicates the type and SHOULD be passed into the assertion request.\r\n\r\nHowever, if the authorization grant is a JWT (which it always should be, but see #45 for details), then [RFC7523](https://www.rfc-editor.org/rfc/rfc7523#section-2.1) defines the grant type of the request to be:\r\n\r\n```\r\nurn:ietf:params:oauth:grant-type:jwt-bearer\r\n```\r\n\r\nThe other implication of this is that the only way to distinguish the type of JWT assertion is in the JWT itself, which can be done using the `typ` field in the JWT header.\r\n\r\n",
       "createdAt": "2023-11-21T16:59:58Z",
-      "updatedAt": "2023-11-30T20:28:04Z",
+      "updatedAt": "2024-01-12T00:18:42Z",
       "closedAt": null,
       "comments": [
         {
@@ -617,6 +617,13 @@
           "body": "With that said however, I do kinda think that'd it be better to limit to JWT authz grant only (a la #45) and not tie the issued_token_type to the grant type. ",
           "createdAt": "2023-11-30T20:28:03Z",
           "updatedAt": "2023-11-30T20:28:03Z"
+        },
+        {
+          "author": "aaronpk",
+          "authorAssociation": "MEMBER",
+          "body": "My point was more about the grant type of the request as described by RFC7523.\r\n\r\n> To use a Bearer JWT as an authorization grant, the client uses an\r\n   access token request as defined in [Section 4](https://www.rfc-editor.org/rfc/rfc7523#section-4) of the OAuth Assertion\r\n   Framework [[RFC7521](https://www.rfc-editor.org/rfc/rfc7521)] with the following specific parameter values and\r\n   encodings.\r\n\r\n  > The value of the \"grant_type\" is \"urn:ietf:params:oauth:grant-type:jwt-bearer\".\r\n\r\nSo if the request contains a JWT, then the grant type value has to be `urn:ietf:params:oauth:grant-type:jwt-bearer`. Which means according to Section 2.4.3 of this spec the issued_token_type \"SHOULD\" be `urn:ietf:params:oauth:grant-type:jwt-bearer`, which is silly. \r\n\r\nSo my proposal is to remove the \"and SHOULD be passed into the assertion request\" part, so that issued_token_type can be a value that makes sense, and use `urn:ietf:params:oauth:grant-type:jwt-bearer` as the grant type. As I said in the original comment, the implication is then that the JWT header itself would need to include something that indicates the type of JWT it is, otherwise all token exchange requests look the same.",
+          "createdAt": "2024-01-12T00:18:41Z",
+          "updatedAt": "2024-01-12T00:18:41Z"
         }
       ]
     },
@@ -2604,7 +2611,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2023-12-01T13:50:09Z",
-      "updatedAt": "2023-12-01T13:50:09Z",
+      "updatedAt": "2024-01-11T23:53:58Z",
       "baseRepository": "oauth-wg/oauth-identity-chaining",
       "baseRefName": "main",
       "baseRefOid": "42c43fc8bd02f2e80f027d86de84fef6539df0eb",
@@ -2616,7 +2623,28 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOJubJxM5sTcD2",
+          "commit": {
+            "abbreviatedOid": "0966584"
+          },
+          "author": "aaronpk",
+          "authorAssociation": "MEMBER",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2024-01-11T23:53:53Z",
+          "updatedAt": "2024-01-11T23:53:58Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "this should actually be `-latest` and the build tool will do the right thing",
+              "createdAt": "2024-01-11T23:53:54Z",
+              "updatedAt": "2024-01-11T23:53:58Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
