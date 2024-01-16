@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-01-14T01:08:11.416243+00:00",
+  "timestamp": "2024-01-16T01:03:16.039026+00:00",
   "repo": "oauth-wg/oauth-identity-chaining",
   "labels": [
     {
@@ -2604,21 +2604,21 @@
       "id": "PR_kwDOJubJxM5g5q0N",
       "title": "Some house keeping after -00 publication",
       "url": "https://github.com/oauth-wg/oauth-identity-chaining/pull/65",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "bc-pi",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2023-12-01T13:50:09Z",
-      "updatedAt": "2024-01-11T23:53:58Z",
+      "updatedAt": "2024-01-14T16:42:45Z",
       "baseRepository": "oauth-wg/oauth-identity-chaining",
       "baseRefName": "main",
       "baseRefOid": "42c43fc8bd02f2e80f027d86de84fef6539df0eb",
       "headRepository": "oauth-wg/oauth-identity-chaining",
       "headRefName": "after-00",
-      "headRefOid": "0966584e32b5d551d7ab441a87785e32dbe567dc",
-      "closedAt": null,
+      "headRefOid": "03b41905a7225803713abb57ec3cdd976bce1b6d",
+      "closedAt": "2024-01-14T16:42:45Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -2643,8 +2643,94 @@
               "updatedAt": "2024-01-11T23:53:58Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOJubJxM5sfv8v",
+          "commit": {
+            "abbreviatedOid": "0966584"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-14T16:24:16Z",
+          "updatedAt": "2024-01-14T16:24:16Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\ndocname: draft-ietf-oauth-identity-chaining-latest\r\n```",
+              "createdAt": "2024-01-14T16:24:16Z",
+              "updatedAt": "2024-01-14T16:24:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJubJxM5sfv-a",
+          "commit": {
+            "abbreviatedOid": "0966584"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-14T16:25:05Z",
+          "updatedAt": "2024-01-14T16:25:05Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "right, thanks. you'd think i'd be able to remember that... ",
+              "createdAt": "2024-01-14T16:25:05Z",
+              "updatedAt": "2024-01-14T16:25:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJubJxM5sfwbK",
+          "commit": {
+            "abbreviatedOid": "0966584"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-14T16:33:36Z",
+          "updatedAt": "2024-01-14T16:33:36Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "actually, this PR predates the move to that build tool and should probably just be closed with a new PR to fix the id nits non-asciii per 82a4600efce97500f5b128e46e7c0e6a42ab0b4d ",
+              "createdAt": "2024-01-14T16:33:36Z",
+              "updatedAt": "2024-01-14T16:33:36Z"
+            }
+          ]
         }
       ]
+    },
+    {
+      "number": 70,
+      "id": "PR_kwDOJubJxM5kBuoy",
+      "title": "Idnits Check was complaining about non-ascii characters in the document.",
+      "url": "https://github.com/oauth-wg/oauth-identity-chaining/pull/70",
+      "state": "OPEN",
+      "author": "bc-pi",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-01-14T16:42:28Z",
+      "updatedAt": "2024-01-14T16:42:29Z",
+      "baseRepository": "oauth-wg/oauth-identity-chaining",
+      "baseRefName": "main",
+      "baseRefOid": "cfac000a0c5c955b39b8ad73735aa5343d84d063",
+      "headRepository": "oauth-wg/oauth-identity-chaining",
+      "headRefName": "idnitsnonascii",
+      "headRefOid": "9f6da23f415ab70325acbd6c8b03b66b0de09897",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
