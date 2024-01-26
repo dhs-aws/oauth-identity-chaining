@@ -5,13 +5,13 @@
 oauth                                                 A. Schwenkschuster
 Internet-Draft                                             P. Kasselmann
 Intended status: Informational                                 Microsoft
-Expires: 8 June 2024                                           K. Burgin
+Expires: 29 July 2024                                          K. Burgin
                                                                    MITRE
                                                               M. Jenkins
                                                                 NSA-CCSS
                                                              B. Campbell
                                                            Ping Identity
-                                                         6 December 2023
+                                                         26 January 2024
 
 
                  Identity Chaining across Trust Domains
@@ -49,11 +49,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 June 2024.
+   This Internet-Draft will expire on 29 July 2024.
 
 Copyright Notice
 
-   Copyright (c) 2023 IETF Trust and the persons identified as the
+   Copyright (c) 2024 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -163,7 +163,7 @@ Table of Contents
 
 2.1.2.  API Security Use Case
 
-   A home devices company provides a “Camera API” to enable access to
+   A home devices company provides a "Camera API" to enable access to
    home cameras.  Partner companies use this Camera API to integrate the
    camera feeds into their security dashboards.  Using OAuth between the
    partner and the Camera API, a partner can request the feed from a
@@ -553,9 +553,9 @@ grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Atoken-exchange
    [I-D.ietf-oauth-selective-disclosure-jwt]
               Fett, D., Yasuda, K., and B. Campbell, "Selective
               Disclosure for JWTs (SD-JWT)", Work in Progress, Internet-
-              Draft, draft-ietf-oauth-selective-disclosure-jwt-06, 23
-              October 2023, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-oauth-selective-disclosure-jwt-06>.
+              Draft, draft-ietf-oauth-selective-disclosure-jwt-07, 11
+              December 2023, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-oauth-selective-disclosure-jwt-07>.
 
    [I-D.ietf-oauth-security-topics]
               Lodderstedt, T., Bradley, J., Labunets, A., and D. Fett,
@@ -568,9 +568,9 @@ grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Atoken-exchange
    [I-D.ietf-oauth-resource-metadata]
               Jones, M. B., Hunt, P., and A. Parecki, "OAuth 2.0
               Protected Resource Metadata", Work in Progress, Internet-
-              Draft, draft-ietf-oauth-resource-metadata-01, 20 October
-              2023, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              oauth-resource-metadata-01>.
+              Draft, draft-ietf-oauth-resource-metadata-02, 24 January
+              2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              oauth-resource-metadata-02>.
 
 Appendix A.  Examples
 
