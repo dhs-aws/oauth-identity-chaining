@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-01-30T00:58:42.442429+00:00",
+  "timestamp": "2024-02-01T01:02:01.543490+00:00",
   "repo": "oauth-wg/oauth-identity-chaining",
   "labels": [
     {
@@ -433,11 +433,13 @@
       "state": "OPEN",
       "author": "PieterKas",
       "authorAssociation": "CONTRIBUTOR",
-      "assignees": [],
+      "assignees": [
+        "bc-pi"
+      ],
       "labels": [],
       "body": "Feedback from Brian Campbell\r\n\r\nConceptually having \"flexibility for authorization servers to change format and content\" sounds nice but I can't help but wonder if that flexibility is actually useful and if this document wouldn't be better served and more straightforward using just JWT authz grants from 7523 (rather than being abstract about using 7521 and the very brief mention of SAML w/out a 7522 ref).",
       "createdAt": "2023-07-21T13:40:57Z",
-      "updatedAt": "2023-12-07T14:17:13Z",
+      "updatedAt": "2024-01-31T21:45:12Z",
       "closedAt": null,
       "comments": [
         {
@@ -453,6 +455,13 @@
           "body": "As discussed in the meeting with the editors and Aaron, we will make the use of JWT explicit.",
           "createdAt": "2023-12-07T14:17:12Z",
           "updatedAt": "2023-12-07T14:17:12Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "PR #72 would limit the authorization grant format to RFC7523 JWT",
+          "createdAt": "2024-01-31T21:39:11Z",
+          "updatedAt": "2024-01-31T21:39:36Z"
         }
       ]
     },
@@ -581,11 +590,13 @@
       "state": "OPEN",
       "author": "bc-pi",
       "authorAssociation": "CONTRIBUTOR",
-      "assignees": [],
+      "assignees": [
+        "bc-pi"
+      ],
       "labels": [],
       "body": "issued_token_type (a required parameter of a token exchange response https://www.rfc-editor.org/rfc/rfc8693#name-successful-response) is missing from the example response at https://www.ietf.org/archive/id/draft-schwenkschuster-oauth-identity-chaining-00.html#name-token-exchange-response ",
       "createdAt": "2023-11-07T17:48:57Z",
-      "updatedAt": "2024-01-26T20:33:11Z",
+      "updatedAt": "2024-01-31T21:38:30Z",
       "closedAt": null,
       "comments": [
         {
@@ -594,6 +605,13 @@
           "body": "@arndt-s can you prepare a PR with an updated example?",
           "createdAt": "2024-01-26T20:33:11Z",
           "updatedAt": "2024-01-26T20:33:11Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "example would be fixed by PR #72 ",
+          "createdAt": "2024-01-31T21:38:18Z",
+          "updatedAt": "2024-01-31T21:38:18Z"
         }
       ]
     },
@@ -605,11 +623,13 @@
       "state": "OPEN",
       "author": "aaronpk",
       "authorAssociation": "MEMBER",
-      "assignees": [],
+      "assignees": [
+        "bc-pi"
+      ],
       "labels": [],
       "body": "[Section 2.4.3](https://www.ietf.org/archive/id/draft-schwenkschuster-oauth-identity-chaining-00.html#section-2.4.3) says this:\r\n\r\n> The issued_token_type parameter in the response indicates the type and SHOULD be passed into the assertion request.\r\n\r\nHowever, if the authorization grant is a JWT (which it always should be, but see #45 for details), then [RFC7523](https://www.rfc-editor.org/rfc/rfc7523#section-2.1) defines the grant type of the request to be:\r\n\r\n```\r\nurn:ietf:params:oauth:grant-type:jwt-bearer\r\n```\r\n\r\nThe other implication of this is that the only way to distinguish the type of JWT assertion is in the JWT itself, which can be done using the `typ` field in the JWT header.\r\n\r\n",
       "createdAt": "2023-11-21T16:59:58Z",
-      "updatedAt": "2024-01-12T00:18:42Z",
+      "updatedAt": "2024-01-31T21:45:24Z",
       "closedAt": null,
       "comments": [
         {
@@ -632,6 +652,13 @@
           "body": "My point was more about the grant type of the request as described by RFC7523.\r\n\r\n> To use a Bearer JWT as an authorization grant, the client uses an\r\n   access token request as defined in [Section 4](https://www.rfc-editor.org/rfc/rfc7523#section-4) of the OAuth Assertion\r\n   Framework [[RFC7521](https://www.rfc-editor.org/rfc/rfc7521)] with the following specific parameter values and\r\n   encodings.\r\n\r\n  > The value of the \"grant_type\" is \"urn:ietf:params:oauth:grant-type:jwt-bearer\".\r\n\r\nSo if the request contains a JWT, then the grant type value has to be `urn:ietf:params:oauth:grant-type:jwt-bearer`. Which means according to Section 2.4.3 of this spec the issued_token_type \"SHOULD\" be `urn:ietf:params:oauth:grant-type:jwt-bearer`, which is silly. \r\n\r\nSo my proposal is to remove the \"and SHOULD be passed into the assertion request\" part, so that issued_token_type can be a value that makes sense, and use `urn:ietf:params:oauth:grant-type:jwt-bearer` as the grant type. As I said in the original comment, the implication is then that the JWT header itself would need to include something that indicates the type of JWT it is, otherwise all token exchange requests look the same.",
           "createdAt": "2024-01-12T00:18:41Z",
           "updatedAt": "2024-01-12T00:18:41Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I might argue that it's not actually silly but I won't b/c it'll be moot as PR #72 addresses this with the removal of the \"issued_token_type parameter in the response indicates the type and SHOULD be passed into the assertion request\" https://github.com/oauth-wg/oauth-identity-chaining/pull/72/files#diff-e5caa2dbf96b2e1e809b4a7c4197220c2a302ecd0b0d9c4a5c47968d6e8c94b7L171",
+          "createdAt": "2024-01-31T21:43:54Z",
+          "updatedAt": "2024-01-31T21:43:54Z"
         }
       ]
     },
@@ -661,9 +688,9 @@
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
-      "body": "Change name to focus on authorization (e.g. cross-domain authorization). Purpose of renaming is to create clarity that this is a mechanism for cross domain authz and that identity flows with the authorization. Add text to make it clear how identity chaining is achieves as a result of using this spec (the idea that the identity is following the authorization).",
+      "body": "Change name to focus on authorization (e.g. cross-domain authorization). Purpose of renaming is to create clarity that this is a mechanism for cross domain authz and that identity flows with the authorization. Add text to make it clear how identity chaining is achieved as a result of using this spec (the idea that the identity is following the authorization).",
       "createdAt": "2023-12-07T14:23:30Z",
-      "updatedAt": "2023-12-07T14:53:41Z",
+      "updatedAt": "2024-01-30T13:07:24Z",
       "closedAt": null,
       "comments": [
         {
@@ -2768,7 +2795,7 @@
       "labels": [],
       "body": "See #69",
       "createdAt": "2024-01-26T20:31:02Z",
-      "updatedAt": "2024-01-26T21:16:44Z",
+      "updatedAt": "2024-01-31T22:08:55Z",
       "baseRepository": "oauth-wg/oauth-identity-chaining",
       "baseRefName": "main",
       "baseRefOid": "25e632aa54b49c8623a50759880fe61f4be9561a",
@@ -2779,15 +2806,7 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [
-        {
-          "author": "bc-pi",
-          "authorAssociation": "CONTRIBUTOR",
-          "body": "I'm not sure why the preview didn't work for this? https://drafts.oauth.net/oauth-identity-chaining/ has a preview for the last little PR I did but not this one, which AFAIK should show up at https://drafts.oauth.net/oauth-identity-chaining/PieterKas:patch-6/draft-ietf-oauth-identity-chaining.html. The I-D template stuff is still mostly an opaque mystery to me though. @arndt-s did you maybe disable something earlier today when fixing the other action or check that I mentioned seemed to be hung-up? Apologies, if I'm confused or have confused others with this rambling. \r\n\r\n",
-          "createdAt": "2024-01-26T21:14:24Z",
-          "updatedAt": "2024-01-26T21:14:24Z"
-        }
-      ],
+      "comments": [],
       "reviews": [
         {
           "id": "PRR_kwDOJubJxM5uEFJw",
@@ -2810,6 +2829,32 @@
           ]
         }
       ]
+    },
+    {
+      "number": 72,
+      "id": "PR_kwDOJubJxM5lnq0Z",
+      "title": "limit authorization grant format to RFC7523 JWT ",
+      "url": "https://github.com/oauth-wg/oauth-identity-chaining/pull/72",
+      "state": "OPEN",
+      "author": "bc-pi",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "and minor other little fixes to fix issues #45, #60, #61\r\n\r\nan editor's draft preview of these changes here: https://drafts.oauth.net/oauth-identity-chaining/bc/just-jwt/draft-ietf-oauth-identity-chaining.html",
+      "createdAt": "2024-01-31T21:36:37Z",
+      "updatedAt": "2024-01-31T22:08:16Z",
+      "baseRepository": "oauth-wg/oauth-identity-chaining",
+      "baseRefName": "main",
+      "baseRefOid": "25e632aa54b49c8623a50759880fe61f4be9561a",
+      "headRepository": "oauth-wg/oauth-identity-chaining",
+      "headRefName": "bc/just-jwt",
+      "headRefOid": "4ea826a1c2b5edd139bde76c273c6f3d2840cfe3",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
