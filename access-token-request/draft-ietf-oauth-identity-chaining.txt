@@ -746,6 +746,8 @@ Appendix C.  Document History
 
    *  added Aaron Parecki to acknowledgements
 
+   *  renamed section headers to be more explicit
+
    -00
 
    *  initial working group version (previously draft-schwenkschuster-
