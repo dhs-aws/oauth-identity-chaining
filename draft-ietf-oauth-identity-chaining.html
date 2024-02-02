@@ -1281,7 +1281,7 @@ appear in all capitals, as shown here.<a href="#section-1.1-1" class="pilcrow">�
 <a href="#section-2" class="section-number selfRef">2. </a><a href="#name-identity-chaining-across-tr" class="section-name selfRef">Identity Chaining Across Trust Domains</a>
       </h2>
 <p id="section-2-1">This specification describes a combination of OAuth 2.0 Token Exchange <span>[<a href="#RFC8693" class="cite xref">RFC8693</a>]</span> and JWT Profile for OAuth 2.0 Client Authentication and Authorization Grants <span>[<a href="#RFC7523" class="cite xref">RFC7523</a>]</span> to achieve identity chaining across trust domains.<a href="#section-2-1" class="pilcrow">¶</a></p>
-<p id="section-2-2">A client in trust domain A that needs to access a resource server in trust domain B requests an authorization grant from the authorization server for trust domain A via a token exchange. The client in trust domain A presents the received grant as an assertion to the authorization server in domain B in order to obtain an access token for the protected resource in domain B. The client in domain A may be a resource server, or it may be the authorization server itself.<a href="#section-2-2" class="pilcrow">¶</a></p>
+<p id="section-2-2">A client in trust domain A that needs to access a resource server in trust domain B requests a JWT authorization grant from the authorization server for trust domain A via a token exchange. The client in trust domain A presents the received grant as an assertion to the authorization server in domain B in order to obtain an access token for the protected resource in domain B. The client in domain A may be a resource server, or it may be the authorization server itself.<a href="#section-2-2" class="pilcrow">¶</a></p>
 <div id="use-case">
 <section id="section-2.1">
         <h3 id="name-use-case">
@@ -1333,7 +1333,7 @@ appear in all capitals, as shown here.<a href="#section-1.1-1" class="pilcrow">�
        |&lt;-------------------|                     |             |
        |                    |                     |             |
        | (C) &lt;authorization |                     |             |
-       |       grant&gt;       |                     |             |
+       |       grant JWT&gt;   |                     |             |
        | - - - - - - - - - &gt;|                     |             |
        |                    |                     |             |
        |                    | (D) present         |             |
@@ -1359,16 +1359,16 @@ appear in all capitals, as shown here.<a href="#section-1.1-1" class="pilcrow">�
             <p id="section-2.2-4.1.1">(A) The client of Domain A needs to discover the authorization server of Domain B. See <span><a href="#authorization-server-discovery" class="internal xref">Authorization Server Discovery</a> (<a href="#authorization-server-discovery" class="auto internal xref">Section 2.3</a>)</span>.<a href="#section-2.2-4.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-2.2-4.2">
-            <p id="section-2.2-4.2.1">(B) The client exchanges its token at the authorization server of its own domain (Domain A) for an authorization grant that can be used at the authorization server in Domain B. See <span><a href="#token-exchange" class="internal xref">Token Exchange</a> (<a href="#token-exchange" class="auto internal xref">Section 2.4</a>)</span>.<a href="#section-2.2-4.2.1" class="pilcrow">¶</a></p>
+            <p id="section-2.2-4.2.1">(B) The client exchanges its token at the authorization server of its own domain (Domain A) for a JWT authorization grant that can be used at the authorization server in Domain B. See <span><a href="#token-exchange" class="internal xref">Token Exchange</a> (<a href="#token-exchange" class="auto internal xref">Section 2.4</a>)</span>.<a href="#section-2.2-4.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-2.2-4.3">
-            <p id="section-2.2-4.3.1">(C) The authorization server of Domain A processes the request and returns an authorization grant that the client can use with the authorization server of Domain B. This requires a trust relationship between Domain A and Domain B (e.g., through federation).<a href="#section-2.2-4.3.1" class="pilcrow">¶</a></p>
+            <p id="section-2.2-4.3.1">(C) The authorization server of Domain A processes the request and returns a JWT authorization grant that the client can use with the authorization server of Domain B. This requires a trust relationship between Domain A and Domain B (e.g., through federation).<a href="#section-2.2-4.3.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-2.2-4.4">
             <p id="section-2.2-4.4.1">(D) The client presents the authorization grant to the authorization server of Domain B. See <span><a href="#access-token-request" class="internal xref">Access Token Request</a> (<a href="#access-token-request" class="auto internal xref">Section 2.5.1</a>)</span>.<a href="#section-2.2-4.4.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-2.2-4.5">
-            <p id="section-2.2-4.5.1">(E) Authorization server of Domain B validates the authorization grant and returns an access token.<a href="#section-2.2-4.5.1" class="pilcrow">¶</a></p>
+            <p id="section-2.2-4.5.1">(E) Authorization server of Domain B validates the JWT authorization grant and returns an access token.<a href="#section-2.2-4.5.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-2.2-4.6">
             <p id="section-2.2-4.6.1">(F) The client now possesses an access token to access the protected resource in Domain B.<a href="#section-2.2-4.6.1" class="pilcrow">¶</a></p>
@@ -1389,7 +1389,7 @@ appear in all capitals, as shown here.<a href="#section-1.1-1" class="pilcrow">�
         <h3 id="name-token-exchange">
 <a href="#section-2.4" class="section-number selfRef">2.4. </a><a href="#name-token-exchange" class="section-name selfRef">Token Exchange</a>
         </h3>
-<p id="section-2.4-1">The client performs token exchange as defined in <span>[<a href="#RFC8693" class="cite xref">RFC8693</a>]</span> with the authorization server for its own domain (e.g., Domain A) in order to obtain an authorization grant that can be used with the authorization server of a different domain (e.g., Domain B) as specified in section 1.3 of <span>[<a href="#RFC6749" class="cite xref">RFC6749</a>]</span>.<a href="#section-2.4-1" class="pilcrow">¶</a></p>
+<p id="section-2.4-1">The client performs token exchange as defined in <span>[<a href="#RFC8693" class="cite xref">RFC8693</a>]</span> with the authorization server for its own domain (e.g., Domain A) in order to obtain a JWT authorization grant that can be used with the authorization server of a different domain (e.g., Domain B) as specified in section 1.3 of <span>[<a href="#RFC6749" class="cite xref">RFC6749</a>]</span>.<a href="#section-2.4-1" class="pilcrow">¶</a></p>
 <div id="token-exchange-request">
 <section id="section-2.4.1">
           <h4 id="name-token-exchange-request">
@@ -1404,7 +1404,7 @@ appear in all capitals, as shown here.<a href="#section-1.1-1" class="pilcrow">�
             <dd class="break"></dd>
 <dt id="section-2.4.1-2.3">scope</dt>
             <dd style="margin-left: 1.5em" id="section-2.4.1-2.4">
-              <p id="section-2.4.1-2.4.1"><span class="bcp14">OPTIONAL</span>. Additional scopes to indicate scopes included in returned authorization grant. See <span><a href="#claims-transcription" class="internal xref">Claims transcription</a> (<a href="#claims-transcription" class="auto internal xref">Section 2.6</a>)</span>.<a href="#section-2.4.1-2.4.1" class="pilcrow">¶</a></p>
+              <p id="section-2.4.1-2.4.1"><span class="bcp14">OPTIONAL</span>. Additional scopes to indicate scopes included in the returned JWT authorization grant. See <span><a href="#claims-transcription" class="internal xref">Claims transcription</a> (<a href="#claims-transcription" class="auto internal xref">Section 2.6</a>)</span>.<a href="#section-2.4.1-2.4.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 <dt id="section-2.4.1-2.5">resource</dt>
@@ -1443,10 +1443,10 @@ appear in all capitals, as shown here.<a href="#section-1.1-1" class="pilcrow">�
 <p id="section-2.4.3-1">All of section 2.2 of <span>[<a href="#RFC8693" class="cite xref">RFC8693</a>]</span> applies. In addition, the following applies to implementations that conform to this specification.<a href="#section-2.4.3-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-2.4.3-2.1">
-              <p id="section-2.4.3-2.1.1">The "aud" claim in the returned authorization grant <span class="bcp14">MUST</span> identify the requested authorization server. This corresponds with <a href="https://datatracker.ietf.org/doc/html/rfc7523#section-3">RFC 7523 Section 3, Point 3</a> and is there to reduce missuse and to prevent clients from presenting access tokens as an authorization grant to an authorization server in a different domain.<a href="#section-2.4.3-2.1.1" class="pilcrow">¶</a></p>
+              <p id="section-2.4.3-2.1.1">The "aud" claim in the returned JWT authorization grant <span class="bcp14">MUST</span> identify the requested authorization server. This corresponds with <a href="https://datatracker.ietf.org/doc/html/rfc7523#section-3">RFC 7523 Section 3, Point 3</a> and is there to reduce missuse and to prevent clients from presenting access tokens as an authorization grant to an authorization server in a different domain.<a href="#section-2.4.3-2.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-2.4.3-2.2">
-              <p id="section-2.4.3-2.2.1">The "aud" claim included in the returned authorization grant <span class="bcp14">MAY</span> identify multiple authorization servers, provided that trust relationships exist with them (e.g. through federation). It is <span class="bcp14">RECOMMENDED</span> that the "aud" claim is restricted to a single authorization server to prevent an authorization server in one domain from presenting the client's authorization grant to an authorization server in a different trust domain. For example, this will prevent the authorization server in Domain B from presenting the authorization grant it received from the client in Domain A to the authorization server for Domain C.<a href="#section-2.4.3-2.2.1" class="pilcrow">¶</a></p>
+              <p id="section-2.4.3-2.2.1">The "aud" claim included in the returned JWT authorization grant <span class="bcp14">MAY</span> identify multiple authorization servers, provided that trust relationships exist with them (e.g. through federation). It is <span class="bcp14">RECOMMENDED</span> that the "aud" claim is restricted to a single authorization server to prevent an authorization server in one domain from presenting the client's authorization grant to an authorization server in a different trust domain. For example, this will prevent the authorization server in Domain B from presenting the authorization grant it received from the client in Domain A to the authorization server for Domain C.<a href="#section-2.4.3-2.2.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 </section>
@@ -1456,7 +1456,7 @@ appear in all capitals, as shown here.<a href="#section-1.1-1" class="pilcrow">�
           <h4 id="name-example">
 <a href="#section-2.4.4" class="section-number selfRef">2.4.4. </a><a href="#name-example" class="section-name selfRef">Example</a>
           </h4>
-<p id="section-2.4.4-1">The example belows shows the message invoked by the client in trust domain A to perform token exchange with the authorization server in domain A (https://as.a.org/auth) to receive an authorization grant for the authorization server in trust domain B (https://as.b.org/auth).<a href="#section-2.4.4-1" class="pilcrow">¶</a></p>
+<p id="section-2.4.4-1">The example belows shows the message invoked by the client in trust domain A to perform token exchange with the authorization server in domain A (https://as.a.org/auth) to receive a JWT authorization grant for the authorization server in trust domain B (https://as.b.org/auth).<a href="#section-2.4.4-1" class="pilcrow">¶</a></p>
 <span id="name-token-exchange-request-2"></span><figure id="figure-2">
             <div class="alignLeft art-text artwork" id="section-2.4.4-2.1">
 <pre>
@@ -1503,7 +1503,7 @@ Cache-Control: no-cache, no-store
         <h3 id="name-jwt-authorization-grant">
 <a href="#section-2.5" class="section-number selfRef">2.5. </a><a href="#name-jwt-authorization-grant" class="section-name selfRef">JWT Authorization Grant</a>
         </h3>
-<p id="section-2.5-1">The client presents the token it received from the authorization server in its own domain as an authorization grant to the authorization server in the domain of the resource server it wants to access as defined in <span>[<a href="#RFC7523" class="cite xref">RFC7523</a>]</span>.<a href="#section-2.5-1" class="pilcrow">¶</a></p>
+<p id="section-2.5-1">The client presents the JWT authorization grant it received from the authorization server in its own domain as an authorization grant to the authorization server in the domain of the resource server it wants to access as defined in <span>[<a href="#RFC7523" class="cite xref">RFC7523</a>]</span>.<a href="#section-2.5-1" class="pilcrow">¶</a></p>
 <div id="access-token-request">
 <section id="section-2.5.1">
           <h4 id="name-access-token-request">
@@ -1606,10 +1606,10 @@ Cache-Control: no-cache, no-store
         <h3 id="name-claims-transcription">
 <a href="#section-2.6" class="section-number selfRef">2.6. </a><a href="#name-claims-transcription" class="section-name selfRef">Claims transcription</a>
         </h3>
-<p id="section-2.6-1">Authorization servers <span class="bcp14">MAY</span> transcribe claims when either producing authorization grants in the token exchange flow or access tokens in the assertion flow.<a href="#section-2.6-1" class="pilcrow">¶</a></p>
+<p id="section-2.6-1">Authorization servers <span class="bcp14">MAY</span> transcribe claims when either producing JWT authorization grants in the token exchange flow or access tokens in the assertion flow.<a href="#section-2.6-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-2.6-2.1">
-            <p id="section-2.6-2.1.1"><strong>Transcribing the subject identifier</strong>: Subject identifier can differ between the parties involved. For instance: A user is known at domain A by "johndoe@a.org" but in domain B by "doe.john@b.org". The mapping from one identifier to the other <span class="bcp14">MAY</span> either happen in the token exchange step and the updated identifier is reflected in returned authorization grant or in the assertion step where the updated identifier would be reflected in the access token. To support this both authorization servers <span class="bcp14">MAY</span> add, change or remove claims as described above.<a href="#section-2.6-2.1.1" class="pilcrow">¶</a></p>
+            <p id="section-2.6-2.1.1"><strong>Transcribing the subject identifier</strong>: Subject identifier can differ between the parties involved. For instance: A user is known at domain A by "johndoe@a.org" but in domain B by "doe.john@b.org". The mapping from one identifier to the other <span class="bcp14">MAY</span> either happen in the token exchange step and the updated identifier is reflected in returned JWT authorization grant or in the assertion step where the updated identifier would be reflected in the access token. To support this both authorization servers <span class="bcp14">MAY</span> add, change or remove claims as described above.<a href="#section-2.6-2.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-2.6-2.2">
             <p id="section-2.6-2.2.1"><strong>Selective disclosure</strong>: Authorization servers <span class="bcp14">MAY</span> remove or hide certain claims due to privacy requirements or reduced trust towards the targeting trust domain. To hide and enclose claims <span>[<a href="#I-D.ietf-oauth-selective-disclosure-jwt" class="cite xref">I-D.ietf-oauth-selective-disclosure-jwt</a>]</span> <span class="bcp14">MAY</span> be used.<a href="#section-2.6-2.2.1" class="pilcrow">¶</a></p>
@@ -1618,7 +1618,7 @@ Cache-Control: no-cache, no-store
             <p id="section-2.6-2.3.1"><strong>Controlling scope</strong>: Clients <span class="bcp14">MAY</span> use the scope parameter to control transcribed claims (e.g. downscoping). Authorization Servers <span class="bcp14">SHOULD</span> verify that requested scopes are not higher priveleged than the scopes of presented subject_token.<a href="#section-2.6-2.3.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-2.6-2.4">
-            <p id="section-2.6-2.4.1"><strong>Including authorization grant claims</strong>: The authorization server performing the assertion flow <span class="bcp14">MAY</span> leverage claims from the presented authorization grant and include them in the returned access token. The populated claims <span class="bcp14">SHOULD</span> be namespaced or validated to prevent the injection of invalid claims.<a href="#section-2.6-2.4.1" class="pilcrow">¶</a></p>
+            <p id="section-2.6-2.4.1"><strong>Including JWT authorization grant claims</strong>: The authorization server performing the assertion flow <span class="bcp14">MAY</span> leverage claims from the presented JWT authorization grant and include them in the returned access token. The populated claims <span class="bcp14">SHOULD</span> be namespaced or validated to prevent the injection of invalid claims.<a href="#section-2.6-2.4.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <p id="section-2.6-3">The representation of transcribed claims and their format is not defined in this specification.<a href="#section-2.6-3" class="pilcrow">¶</a></p>
@@ -1774,10 +1774,10 @@ Cache-Control: no-cache, no-store
           </figcaption></figure>
 <p id="appendix-A.1-5">The flow contains the following steps:<a href="#appendix-A.1-5" class="pilcrow">¶</a></p>
 <p id="appendix-A.1-6">(A) The resource server of domain A needs to access protected resource in Domain B. It requires an access token to do so which it does not possess. In this example <span>[<a href="#I-D.ietf-oauth-resource-metadata" class="cite xref">I-D.ietf-oauth-resource-metadata</a>]</span> is used to receive information about the authorization server which protects the resource in domain B. This step <span class="bcp14">MAY</span> be skipped if discovery is not needed and other means of discovery <span class="bcp14">MAY</span> be used. The protected resource returns its metadata along with the authorization server information.<a href="#appendix-A.1-6" class="pilcrow">¶</a></p>
-<p id="appendix-A.1-7">(B) Now, after the resource server has identified the authorization server for Domain B, the resource server requests an authorization grant for the authorization server in Domain B from its own authorization server (Domain A). This happens via the token exchange protocol.<a href="#appendix-A.1-7" class="pilcrow">¶</a></p>
-<p id="appendix-A.1-8">(C) If successful, the authorization server returns an authorization grant to the resource server.<a href="#appendix-A.1-8" class="pilcrow">¶</a></p>
-<p id="appendix-A.1-9">(D) The resource server presents the authorization grant to the authorization server of Domain B.<a href="#appendix-A.1-9" class="pilcrow">¶</a></p>
-<p id="appendix-A.1-10">(E) The authorization server of Domain B uses claims from the authorization grant to identify the user and its access. If access is granted an access token is returned.<a href="#appendix-A.1-10" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-7">(B) Now, after the resource server has identified the authorization server for Domain B, the resource server requests a JWT authorization grant for the authorization server in Domain B from its own authorization server (Domain A). This happens via the token exchange protocol.<a href="#appendix-A.1-7" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-8">(C) If successful, the authorization server returns a JWT authorization grant to the resource server.<a href="#appendix-A.1-8" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-9">(D) The resource server presents the JWT authorization grant to the authorization server of Domain B.<a href="#appendix-A.1-9" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-10">(E) The authorization server of Domain B uses claims from the JWT authorization grant to identify the user and its access. If access is granted an access token is returned.<a href="#appendix-A.1-10" class="pilcrow">¶</a></p>
 <p id="appendix-A.1-11">(F) The resource server uses the access token to access the protected resource at Domain B.<a href="#appendix-A.1-11" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1853,8 +1853,8 @@ Cache-Control: no-cache, no-store
 <p id="appendix-A.2-5">The flow contains the following steps:<a href="#appendix-A.2-5" class="pilcrow">¶</a></p>
 <p id="appendix-A.2-6">(A) The resource server of Domain A requests a token for the protected resource in Domain B from the authorization server in Domain A. This specification does not cover this step. A profile of Token Exchange <span>[<a href="#RFC8693" class="cite xref">RFC8693</a>]</span> may be used.<a href="#appendix-A.2-6" class="pilcrow">¶</a></p>
 <p id="appendix-A.2-7">(B) The authorization server (of Domain A) determines the authorization server (of Domain B). This could have been passed by the client, is statically maintained or dynamically resolved.<a href="#appendix-A.2-7" class="pilcrow">¶</a></p>
-<p id="appendix-A.2-8">(C) Once the authorization server is determined an authorization grant is issued internally. This reflects to <span><a href="#token-exchange" class="internal xref">Token exchange</a> (<a href="#token-exchange" class="auto internal xref">Section 2.4</a>)</span> of this specification and can be seen as an "internal token exchange".<a href="#appendix-A.2-8" class="pilcrow">¶</a></p>
-<p id="appendix-A.2-9">(D) The issued authorization grant is presented to the authorization server of Domain B. This presentation happens between the authorization servers and authorization server A may be required to perform client authentication while doing so.<a href="#appendix-A.2-9" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-8">(C) Once the authorization server is determined a JWT authorization grant is issued internally. This reflects to <span><a href="#token-exchange" class="internal xref">Token exchange</a> (<a href="#token-exchange" class="auto internal xref">Section 2.4</a>)</span> of this specification and can be seen as an "internal token exchange".<a href="#appendix-A.2-8" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-9">(D) The issued JWT authorization grant is presented to the authorization server of Domain B. This presentation happens between the authorization servers and authorization server A may be required to perform client authentication while doing so.<a href="#appendix-A.2-9" class="pilcrow">¶</a></p>
 <p id="appendix-A.2-10">(E) The authorization server of Domain B returns an access token for access to the protected resource in Domain B to the authorization server in Domain A.<a href="#appendix-A.2-10" class="pilcrow">¶</a></p>
 <p id="appendix-A.2-11">(F) The authorization server of Domain A returns that access token to the resource server in Domain A.<a href="#appendix-A.2-11" class="pilcrow">¶</a></p>
 <p id="appendix-A.2-12">(G) The resource server in Domain A uses the received access token to access the protected resource in Domain B.<a href="#appendix-A.2-12" class="pilcrow">¶</a></p>
@@ -1892,6 +1892,9 @@ Cache-Control: no-cache, no-store
 </li>
         <li class="normal" id="appendix-C-3.5">
           <p id="appendix-C-3.5.1">renamed section headers to be more explicit<a href="#appendix-C-3.5.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-C-3.6">
+          <p id="appendix-C-3.6.1">use more specific term "JWT authorization grant"<a href="#appendix-C-3.6.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <p id="appendix-C-4">-00<a href="#appendix-C-4" class="pilcrow">¶</a></p>
