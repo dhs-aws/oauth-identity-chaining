@@ -96,8 +96,8 @@ Table of Contents
    Appendix A.  Examples
      A.1.  Resource server acting as client
      A.2.  Authorization server acting as client
-   Acknowledgements
-   Document History
+   Appendix B.  Acknowledgements
+   Appendix C.  Document History
    Contributors
    Authors' Addresses
 
@@ -725,11 +725,14 @@ A.2.  Authorization server acting as client
    (G) The resource server in Domain A uses the received access token to
    access the protected resource in Domain B.
 
-Acknowledgements
+Appendix B.  Acknowledgements
 
-   Joe Jubinski, Justin Richer
+   The editors would like to thank Joe Jubinski, Justin Richer, Aaron
+   Parecki and others (please let us know, if you've been mistakenly
+   omitted) for their valuable input, feedback and general support of
+   this work.
 
-Document History
+Appendix C.  Document History
 
    [[ To be removed from the final specification ]]
 
@@ -740,6 +743,8 @@ Document History
    *  minor example fixes
 
    *  editorial fixes
+
+   *  added Aaron Parecki to acknowledgements
 
    -00
 
