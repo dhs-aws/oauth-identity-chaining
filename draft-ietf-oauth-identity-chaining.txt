@@ -5,13 +5,13 @@
 oauth                                                 A. Schwenkschuster
 Internet-Draft                                             P. Kasselmann
 Intended status: Informational                                 Microsoft
-Expires: 29 July 2024                                          K. Burgin
+Expires: 5 August 2024                                         K. Burgin
                                                                    MITRE
                                                               M. Jenkins
                                                                 NSA-CCSS
                                                              B. Campbell
                                                            Ping Identity
-                                                         26 January 2024
+                                                         2 February 2024
 
 
                  Identity Chaining across Trust Domains
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 29 July 2024.
+   This Internet-Draft will expire on 5 August 2024.
 
 Copyright Notice
 
@@ -79,9 +79,8 @@ Table of Contents
      2.4.  Token Exchange
        2.4.1.  Request
        2.4.2.  Processing rules
-       2.4.3.  Authorization grant type
-       2.4.4.  Response
-       2.4.5.  Example
+       2.4.3.  Response
+       2.4.4.  Example
      2.5.  Authorization Grant
        2.5.1.  Request
        2.5.2.  Processing rules
@@ -98,6 +97,7 @@ Table of Contents
      A.1.  Resource server acting as client
      A.2.  Authorization server acting as client
    Acknowledgements
+   Document History
    Contributors
    Authors' Addresses
 
@@ -118,8 +118,8 @@ Table of Contents
    Preserving this information is referred to as identity chaining.
    This document defines a mechanism for preserving identity chaining
    information across trust domains using a combination of OAuth 2.0
-   Token Exchange [RFC8693] and Assertion Framework for OAuth 2.0 Client
-   Authentication and Authorization Grants [RFC7521].
+   Token Exchange [RFC8693] and JSON Web Token (JWT) Profile for OAuth
+   2.0 Client Authentication and Authorization Grants [RFC7523].
 
 1.1.  Requirements Language
 
@@ -132,8 +132,8 @@ Table of Contents
 2.  Identity Chaining Across Trust Domains
 
    This specification describes a combination of OAuth 2.0 Token
-   Exchange [RFC8693] and Assertion Framework for OAuth 2.0 Client
-   Authentication and Authorization Grants [RFC7521] to achieve identity
+   Exchange [RFC8693] and JWT Profile for OAuth 2.0 Client
+   Authentication and Authorization Grants [RFC7523] to achieve identity
    chaining across trust domains.
 
    A client in trust domain A that needs to access a resource server in
@@ -178,10 +178,10 @@ Table of Contents
 2.2.  Overview
 
    The Identity Chaining flow outlined below describes how a combination
-   of OAuth 2.0 Token Exchange [RFC8693] and Assertion Framework for
-   OAuth 2.0 Client Authentication and Authorization Grants [RFC7521]
-   are used to address the use cases identified.  The appendix include
-   two additional examples that describe how this flow is used.  In one
+   of OAuth 2.0 Token Exchange [RFC8693] and JWT Profile for OAuth 2.0
+   Client Authentication and Authorization Grants [RFC7523] are used to
+   address the use cases identified.  The appendix include two
+   additional examples that describe how this flow is used.  In one
    example, the resource server acts as the client and in the other, the
    authorization server acts as the client.
 
@@ -208,7 +208,7 @@ Table of Contents
          |                    |                     |             |
          |                    | (D) present         |             |
          |                    | authorization grant |             |
-         |                    | [RFC 7521]          |             |
+         |                    | [RFC 7523]          |             |
          |                    | ------------------->|             |
          |                    |                     |             |
          |                    | (E) <access token>  |             |
@@ -275,8 +275,7 @@ Table of Contents
 
    requested_token_type
       OPTIONAL according to [RFC8693].  In the context of this
-      specification this parameter SHOULD NOT be used.  See
-      Authorization grant type (Section 2.4.3).
+      specification this parameter SHOULD NOT be used.
 
    scope
       OPTIONAL.  Additional scopes to indicate scopes included in
@@ -300,24 +299,7 @@ Table of Contents
    *  The authorization server MAY add, remove or change claims.  See
       Claims transcription (Section 2.6).
 
-2.4.3.  Authorization grant type
-
-   The authorization grant format and content is part of a contract
-   between the authorization servers.  To achieve a maintainable and
-   flexible systems clients SHOULD NOT request a specific
-   requested_token_type during the token exchange and SHOULD NOT require
-   a certain format or parse the authorization grant (e.g., if the token
-   is encoded as a JWT).  The issued_token_type parameter in the
-   response indicates the type and SHOULD be passed into the assertion
-   request.  This allows flexibility for authorization servers to change
-   format and content.
-
-   Authorization servers MAY use an existing grant type such us
-   urn:ietf:params:oauth:grant-type:jwt-bearer to indicate a JWT or
-   urn:ietf:params:oauth:grant-type:saml2-bearer to indicate SAML.
-   Other grant types MAY be used to indicate other formats.
-
-2.4.4.  Response
+2.4.3.  Response
 
    All of section 2.2 of [RFC8693] applies.  In addition, the following
    applies to implementations that conform to this specification.
@@ -340,7 +322,7 @@ Table of Contents
       presenting the authorization grant it received from the client in
       Domain A to the authorization server for Domain C.
 
-2.4.5.  Example
+2.4.4.  Example
 
    The example belows shows the message invoked by the client in trust
    domain A to perform token exchange with the authorization server in
@@ -368,7 +350,8 @@ grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Atoken-exchange
      dHRwczovL2FzLmEub3JnL2F1dGgiLCJleHAiOjE2OTUyODQwOTIsImlhdCI6MTY5N
      TI4NzY5Miwic3ViIjoiam9obl9kb2VAYS5vcmciLCJhdWQiOiJodHRwczovL2FzLm
      Iub3JnL2F1dGgifQ.304Pv9e6PnzcQPzz14z-k2ZyZvDtP5WIRkYPScwdHW4",
-     "token_type":"Bearer",
+     "token_type":"N_A",
+     "issued_token_type": "urn:ietf:params:oauth:token-type:jwt",
      "expires_in":60
    }
 
@@ -376,27 +359,22 @@ grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Atoken-exchange
 
 2.5.  Authorization Grant
 
-   The client presents the authorization grant it received from the
-   authorization server in its own domain and presents it to the
-   authorization server in the domain of the resources server it wants
-   to access as defined in the "Assertion Framework for OAuth 2.0 Client
-   Authentication and Authorization Grants" [RFC7521].
+   The client presents the token it received from the authorization
+   server in its own domain as an authorization grant to the
+   authorization server in the domain of the resource server it wants to
+   access as defined in [RFC7523].
 
 2.5.1.  Request
 
-   If the authorization grant is in the form of a JWT bearer token, the
-   client SHOULD use the "JSON Web Token (JWT) Profile for OAuth 2.0
-   Client Authentication and Authorization Grants" as defined in
-   [RFC7523].  Otherwise, the client SHOULD request an access token
-   using the "Assertion Framework for OAuth 2.0 Client Authentication
-   and Authorization Grants" as defined in [RFC7521] (Section 4.1).  For
+   The authorization grant is a JWT bearer token, which the client uses
+   to request an access token as described in the JWT Profile for OAuth
+   2.0 Client Authentication and Authorization Grants [RFC7523].  For
    the purpose of this specification the following descriptions apply:
 
    grant_type
-      REQUIRED.  In context of this specification clients SHOULD use the
-      type identifier returned by the token exchange (issued_token_type
-      response).  See authorization grant type (Section 2.4.3) for more
-      details.
+      REQUIRED.  As defined in Section 2.1 of [RFC7523] the value
+      urn:ietf:params:oauth:grant-type:jwt-bearer indicates the request
+      is a JWT bearer assertion authorization grant.
 
    assertion
       REQUIRED.  Authorization grant returned by the token exchange
@@ -410,8 +388,9 @@ grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Atoken-exchange
 
 2.5.2.  Processing rules
 
-   All of Section 5.2 [RFC7521] applies, in addition to the following
-   processing rules:
+   The authorization server MUST validate the JWT authorization grant as
+   specified in Sections 3 and 3.1 of [RFC7523].  The following
+   processing rules also apply:
 
    *  The "aud" claim MUST identify the Authorization Server as a valid
       intended audience of the assertion using either the token endpoint
@@ -471,7 +450,7 @@ grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Atoken-exchange
       known at domain A by "johndoe@a.org" but in domain B by
       "doe.john@b.org".  The mapping from one identifier to the other
       MAY either happen in the token exchange step and the updated
-      identifer is reflected in returned authorization grant or in the
+      identifier is reflected in returned authorization grant or in the
       assertion step where the updated identifier would be reflected in
       the access token.  To support this both authorization servers MAY
       add, change or remove claims as described above.
@@ -520,11 +499,6 @@ grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Atoken-exchange
               DOI 10.17487/RFC8693, January 2020,
               <https://www.rfc-editor.org/rfc/rfc8693>.
 
-   [RFC7521]  Campbell, B., Mortimore, C., Jones, M., and Y. Goland,
-              "Assertion Framework for OAuth 2.0 Client Authentication
-              and Authorization Grants", RFC 7521, DOI 10.17487/RFC7521,
-              May 2015, <https://www.rfc-editor.org/rfc/rfc7521>.
-
    [RFC7523]  Jones, M., Campbell, B., and C. Mortimore, "JSON Web Token
               (JWT) Profile for OAuth 2.0 Client Authentication and
               Authorization Grants", RFC 7523, DOI 10.17487/RFC7523, May
@@ -568,9 +542,9 @@ grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Atoken-exchange
    [I-D.ietf-oauth-resource-metadata]
               Jones, M. B., Hunt, P., and A. Parecki, "OAuth 2.0
               Protected Resource Metadata", Work in Progress, Internet-
-              Draft, draft-ietf-oauth-resource-metadata-02, 24 January
+              Draft, draft-ietf-oauth-resource-metadata-03, 1 February
               2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              oauth-resource-metadata-02>.
+              oauth-resource-metadata-03>.
 
 Appendix A.  Examples
 
@@ -614,7 +588,7 @@ A.1.  Resource server acting as client
         |                     |                     |             |
         |                     | (E) present         |             |
         |                     |  authorization      |             |
-        |                     |  grant [RFC 7521]   |             |
+        |                     |  grant [RFC 7523]   |             |
         |                     | ------------------->|             |
         |                     |                     |             |
         |                     | (F) <access token>  |             |
@@ -704,7 +678,7 @@ A.2.  Authorization server acting as client
      |                      |                       |             |
      |                      | (D) present           |             |
      |                      |   authorization grant |             |
-     |                      |   [RFC 7521]          |             |
+     |                      |   [RFC 7523]          |             |
      |                      | --------------------->|             |
      |                      |                       |             |
      |                      | (E) <access token>    |             |
@@ -754,6 +728,23 @@ A.2.  Authorization server acting as client
 Acknowledgements
 
    Joe Jubinski, Justin Richer
+
+Document History
+
+   [[ To be removed from the final specification ]]
+
+   -01
+
+   *  limit the authorization grant format to RFC7523 JWT
+
+   *  minor example fixes
+
+   *  editorial fixes
+
+   -00
+
+   *  initial working group version (previously draft-schwenkschuster-
+      oauth-identity-chaining)
 
 Contributors
 
