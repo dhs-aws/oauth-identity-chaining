@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-01T01:02:01.543490+00:00",
+  "timestamp": "2024-02-04T01:03:08.069399+00:00",
   "repo": "oauth-wg/oauth-identity-chaining",
   "labels": [
     {
@@ -430,7 +430,7 @@
       "id": "I_kwDOJubJxM5sO2i1",
       "title": "Consider limiting token formats to JWT",
       "url": "https://github.com/oauth-wg/oauth-identity-chaining/issues/45",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "PieterKas",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [
@@ -439,8 +439,8 @@
       "labels": [],
       "body": "Feedback from Brian Campbell\r\n\r\nConceptually having \"flexibility for authorization servers to change format and content\" sounds nice but I can't help but wonder if that flexibility is actually useful and if this document wouldn't be better served and more straightforward using just JWT authz grants from 7523 (rather than being abstract about using 7521 and the very brief mention of SAML w/out a 7522 ref).",
       "createdAt": "2023-07-21T13:40:57Z",
-      "updatedAt": "2024-01-31T21:45:12Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-02T19:44:53Z",
+      "closedAt": "2024-02-02T19:44:53Z",
       "comments": [
         {
           "author": "aaronpk",
@@ -587,7 +587,7 @@
       "id": "I_kwDOJubJxM52IXsB",
       "title": "example response missing issued_token_type",
       "url": "https://github.com/oauth-wg/oauth-identity-chaining/issues/60",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "bc-pi",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [
@@ -596,8 +596,8 @@
       "labels": [],
       "body": "issued_token_type (a required parameter of a token exchange response https://www.rfc-editor.org/rfc/rfc8693#name-successful-response) is missing from the example response at https://www.ietf.org/archive/id/draft-schwenkschuster-oauth-identity-chaining-00.html#name-token-exchange-response ",
       "createdAt": "2023-11-07T17:48:57Z",
-      "updatedAt": "2024-01-31T21:38:30Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-02T19:44:53Z",
+      "closedAt": "2024-02-02T19:44:53Z",
       "comments": [
         {
           "author": "PieterKas",
@@ -620,7 +620,7 @@
       "id": "I_kwDOJubJxM53fin4",
       "title": "authorization grant type can't be the same as the issued token type",
       "url": "https://github.com/oauth-wg/oauth-identity-chaining/issues/61",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "aaronpk",
       "authorAssociation": "MEMBER",
       "assignees": [
@@ -629,8 +629,8 @@
       "labels": [],
       "body": "[Section 2.4.3](https://www.ietf.org/archive/id/draft-schwenkschuster-oauth-identity-chaining-00.html#section-2.4.3) says this:\r\n\r\n> The issued_token_type parameter in the response indicates the type and SHOULD be passed into the assertion request.\r\n\r\nHowever, if the authorization grant is a JWT (which it always should be, but see #45 for details), then [RFC7523](https://www.rfc-editor.org/rfc/rfc7523#section-2.1) defines the grant type of the request to be:\r\n\r\n```\r\nurn:ietf:params:oauth:grant-type:jwt-bearer\r\n```\r\n\r\nThe other implication of this is that the only way to distinguish the type of JWT assertion is in the JWT itself, which can be done using the `typ` field in the JWT header.\r\n\r\n",
       "createdAt": "2023-11-21T16:59:58Z",
-      "updatedAt": "2024-01-31T21:45:24Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-02T19:44:53Z",
+      "closedAt": "2024-02-02T19:44:53Z",
       "comments": [
         {
           "author": "bc-pi",
@@ -690,7 +690,7 @@
       "labels": [],
       "body": "Change name to focus on authorization (e.g. cross-domain authorization). Purpose of renaming is to create clarity that this is a mechanism for cross domain authz and that identity flows with the authorization. Add text to make it clear how identity chaining is achieved as a result of using this spec (the idea that the identity is following the authorization).",
       "createdAt": "2023-12-07T14:23:30Z",
-      "updatedAt": "2024-01-30T13:07:24Z",
+      "updatedAt": "2024-02-02T21:39:19Z",
       "closedAt": null,
       "comments": [
         {
@@ -699,6 +699,13 @@
           "body": "My suggestion: \"OAuth Cross-Domain Authorization Framework\"\r\n\r\nIt focuses on the cross-domain authorization aspect, and also makes it clear this is a framework that will need to be profiled to be implemented.",
           "createdAt": "2023-12-07T14:53:40Z",
           "updatedAt": "2023-12-07T14:53:40Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Some discussion has happened elsewhere (email and webex) with apparent consensus forming around \u201cOAuth Identity and Authorization Chaining Across Domains\u201d as the proposed name. ",
+          "createdAt": "2024-02-02T21:21:48Z",
+          "updatedAt": "2024-02-02T21:39:19Z"
         }
       ]
     },
@@ -723,16 +730,24 @@
       "id": "I_kwDOJubJxM55LLvW",
       "title": "Add Aaron Parecki to acknowledgements section",
       "url": "https://github.com/oauth-wg/oauth-identity-chaining/issues/69",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "PieterKas",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Add Aaron Parecki to acknowledgements section",
       "createdAt": "2023-12-08T16:29:50Z",
-      "updatedAt": "2023-12-08T16:29:50Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-02-02T20:20:00Z",
+      "closedAt": "2024-02-02T20:20:00Z",
+      "comments": [
+        {
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "done w/ merge of #71 ",
+          "createdAt": "2024-02-02T20:20:00Z",
+          "updatedAt": "2024-02-02T20:20:00Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -2788,24 +2803,26 @@
       "id": "PR_kwDOJubJxM5lMZCP",
       "title": "Added acknowledgement for Aaron Parecki",
       "url": "https://github.com/oauth-wg/oauth-identity-chaining/pull/71",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "PieterKas",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "See #69",
       "createdAt": "2024-01-26T20:31:02Z",
-      "updatedAt": "2024-01-31T22:08:55Z",
+      "updatedAt": "2024-02-02T20:02:55Z",
       "baseRepository": "oauth-wg/oauth-identity-chaining",
       "baseRefName": "main",
-      "baseRefOid": "25e632aa54b49c8623a50759880fe61f4be9561a",
+      "baseRefOid": "bef79bc76f9bd83a7cf00e2a1d276504315a10c0",
       "headRepository": "PieterKas/ietf-identity-chaining",
       "headRefName": "patch-6",
-      "headRefOid": "e10d04951e613d9e46b3aa02a6a97919331ec52e",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "c2b4f5905dafd90891e755f0ec661cdcd80ad6d4",
+      "closedAt": "2024-02-02T20:02:55Z",
+      "mergedAt": "2024-02-02T20:02:55Z",
+      "mergedBy": "bc-pi",
+      "mergeCommit": {
+        "oid": "4b1b5dacb352e8f4220bf7bec1eb077bac253f17"
+      },
       "comments": [],
       "reviews": [
         {
@@ -2827,6 +2844,32 @@
               "updatedAt": "2024-01-26T21:20:12Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOJubJxM5u3R5H",
+          "commit": {
+            "abbreviatedOid": "72d5722"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-02T17:46:50Z",
+          "updatedAt": "2024-02-02T17:46:50Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOJubJxM5u4Rlb",
+          "commit": {
+            "abbreviatedOid": "c2b4f59"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-02T20:02:25Z",
+          "updatedAt": "2024-02-02T20:02:25Z",
+          "comments": []
         }
       ]
     },
@@ -2835,26 +2878,160 @@
       "id": "PR_kwDOJubJxM5lnq0Z",
       "title": "limit authorization grant format to RFC7523 JWT ",
       "url": "https://github.com/oauth-wg/oauth-identity-chaining/pull/72",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "bc-pi",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "and minor other little fixes to fix issues #45, #60, #61\r\n\r\nan editor's draft preview of these changes here: https://drafts.oauth.net/oauth-identity-chaining/bc/just-jwt/draft-ietf-oauth-identity-chaining.html",
       "createdAt": "2024-01-31T21:36:37Z",
-      "updatedAt": "2024-01-31T22:08:16Z",
+      "updatedAt": "2024-02-02T19:44:52Z",
       "baseRepository": "oauth-wg/oauth-identity-chaining",
       "baseRefName": "main",
       "baseRefOid": "25e632aa54b49c8623a50759880fe61f4be9561a",
       "headRepository": "oauth-wg/oauth-identity-chaining",
       "headRefName": "bc/just-jwt",
       "headRefOid": "4ea826a1c2b5edd139bde76c273c6f3d2840cfe3",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-02-02T19:44:52Z",
+      "mergedAt": "2024-02-02T19:44:52Z",
+      "mergedBy": "bc-pi",
+      "mergeCommit": {
+        "oid": "bef79bc76f9bd83a7cf00e2a1d276504315a10c0"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOJubJxM5u3Oo1",
+          "commit": {
+            "abbreviatedOid": "4ea826a"
+          },
+          "author": "aaronpk",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-02T17:40:41Z",
+          "updatedAt": "2024-02-02T17:40:41Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 73,
+      "id": "PR_kwDOJubJxM5l4m6H",
+      "title": "More specific headers",
+      "url": "https://github.com/oauth-wg/oauth-identity-chaining/pull/73",
+      "state": "MERGED",
+      "author": "aaronpk",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Renamed the \"Authorization Grant\" header to \"Access Token Request\". This makes it match with the other grant types in OAuth that use \"Access Token Request\" as the header for their sections. https://datatracker.ietf.org/doc/html/rfc6749#section-4",
+      "createdAt": "2024-02-02T22:26:56Z",
+      "updatedAt": "2024-02-02T23:42:39Z",
+      "baseRepository": "oauth-wg/oauth-identity-chaining",
+      "baseRefName": "main",
+      "baseRefOid": "4b1b5dacb352e8f4220bf7bec1eb077bac253f17",
+      "headRepository": "oauth-wg/oauth-identity-chaining",
+      "headRefName": "access-token-request",
+      "headRefOid": "67dafc3485ff7c11bed70a2bcc5e94bbb6ef45b4",
+      "closedAt": "2024-02-02T23:42:39Z",
+      "mergedAt": "2024-02-02T23:42:39Z",
+      "mergedBy": "bc-pi",
+      "mergeCommit": {
+        "oid": "88ee20a23c7ec689992b8e26c80ea9cbfe30e56d"
+      },
+      "comments": [
+        {
+          "author": "aaronpk",
+          "authorAssociation": "MEMBER",
+          "body": "Agreed. I also made the token exchange request/response headers more explicit so that there are no headers just called \"Request\" anymore",
+          "createdAt": "2024-02-02T23:27:55Z",
+          "updatedAt": "2024-02-02T23:27:55Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJubJxM5u5sae",
+          "commit": {
+            "abbreviatedOid": "d121e8b"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "if the intent is to match better w/ 6749, I think renaming subsection 2.5.1 to \"Access Token Request\" and 2.5.3 to \"Access Token Response\" would be more better matching. \r\nLike Access Token Request https://datatracker.ietf.org/doc/html/rfc6749#section-4.1.3 and Access Token Response https://datatracker.ietf.org/doc/html/rfc6749#section-4.1.4 are subsections of Authorization Code Grant https://datatracker.ietf.org/doc/html/rfc6749#section-4.1\r\nAnd then maybe rename 2.5 \"Authorization Grant\" to \"JWT Authorization Grant\"",
+          "createdAt": "2024-02-02T23:19:38Z",
+          "updatedAt": "2024-02-02T23:27:32Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOJubJxM5u5viD",
+          "commit": {
+            "abbreviatedOid": "91cae4d"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-02T23:37:15Z",
+          "updatedAt": "2024-02-02T23:37:15Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOJubJxM5u5wB0",
+          "commit": {
+            "abbreviatedOid": "67dafc3"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-02T23:41:24Z",
+          "updatedAt": "2024-02-02T23:41:24Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 74,
+      "id": "PR_kwDOJubJxM5l49Zk",
+      "title": "use more specific term \"JWT authorization grant\"",
+      "url": "https://github.com/oauth-wg/oauth-identity-chaining/pull/74",
+      "state": "MERGED",
+      "author": "aaronpk",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "when \"authorization grant\" refers to the actual JWT being passed around, it is clearer to call it \"JWT authorization grant\". RFC6749 uses \"authorization grant\" to refer to the general concept of any grant",
+      "createdAt": "2024-02-02T23:47:36Z",
+      "updatedAt": "2024-02-02T23:58:48Z",
+      "baseRepository": "oauth-wg/oauth-identity-chaining",
+      "baseRefName": "main",
+      "baseRefOid": "88ee20a23c7ec689992b8e26c80ea9cbfe30e56d",
+      "headRepository": "oauth-wg/oauth-identity-chaining",
+      "headRefName": "jwt-authorization-grant",
+      "headRefOid": "9add3502d123538d68f68beb7f070906f9a3f364",
+      "closedAt": "2024-02-02T23:58:48Z",
+      "mergedAt": "2024-02-02T23:58:48Z",
+      "mergedBy": "bc-pi",
+      "mergeCommit": {
+        "oid": "ef69bf6001c3fd0265b605a4e17a52d05b1194aa"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJubJxM5u5ybJ",
+          "commit": {
+            "abbreviatedOid": "9add350"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-02T23:56:27Z",
+          "updatedAt": "2024-02-02T23:56:27Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
