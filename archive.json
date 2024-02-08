@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-06T00:58:49.475322+00:00",
+  "timestamp": "2024-02-08T00:58:02.124620+00:00",
   "repo": "oauth-wg/oauth-identity-chaining",
   "labels": [
     {
@@ -748,6 +748,22 @@
           "updatedAt": "2024-02-02T20:20:00Z"
         }
       ]
+    },
+    {
+      "number": 75,
+      "id": "I_kwDOJubJxM5-ldyJ",
+      "title": "Describe or give examples of what kinds of tokens a client would exchange",
+      "url": "https://github.com/oauth-wg/oauth-identity-chaining/issues/75",
+      "state": "OPEN",
+      "author": "aaronpk",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Currently the text says \"its token\" without giving any guidance on where this token came from or what kind of token it is. (ID token? access token? refresh token?) While not being prescriptive about the type of token is useful to enable more use cases, there should at least be some clues about how this token was obtained in the first place.",
+      "createdAt": "2024-02-07T19:44:36Z",
+      "updatedAt": "2024-02-07T19:44:36Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -3029,6 +3045,94 @@
           "body": "",
           "createdAt": "2024-02-02T23:56:27Z",
           "updatedAt": "2024-02-02T23:56:27Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 76,
+      "id": "PR_kwDOJubJxM5mTPNq",
+      "title": "update draft name",
+      "url": "https://github.com/oauth-wg/oauth-identity-chaining/pull/76",
+      "state": "OPEN",
+      "author": "aaronpk",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "closes #67",
+      "createdAt": "2024-02-07T19:47:05Z",
+      "updatedAt": "2024-02-07T21:11:35Z",
+      "baseRepository": "oauth-wg/oauth-identity-chaining",
+      "baseRefName": "main",
+      "baseRefOid": "ef69bf6001c3fd0265b605a4e17a52d05b1194aa",
+      "headRepository": "oauth-wg/oauth-identity-chaining",
+      "headRefName": "rename",
+      "headRefOid": "8cded4f78d02daa44cf1becf1ae720d0588fad66",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "an editor's copy preview of this PR can be seen at https://drafts.oauth.net/oauth-identity-chaining/rename/draft-ietf-oauth-identity-chaining.html ",
+          "createdAt": "2024-02-07T21:11:34Z",
+          "updatedAt": "2024-02-07T21:11:34Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJubJxM5vYXgK",
+          "commit": {
+            "abbreviatedOid": "e8878bb"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-07T19:55:23Z",
+          "updatedAt": "2024-02-07T19:55:23Z",
+          "comments": [
+            {
+              "originalPosition": 35,
+              "body": "we can probably do without the capitalization in regular text \r\n```suggestion\r\nThe identity and authorization chaining flow outlined below describes how a combination of OAuth 2.0 Token Exchange {{RFC8693}} and JWT Profile for OAuth 2.0 Client Authentication and Authorization Grants {{RFC7523}} are used to address the use cases identified. The appendix include two additional examples that describe how this flow is used. In one example, the resource server acts as the client and in the other, the authorization server acts as the client.\r\n```",
+              "createdAt": "2024-02-07T19:55:23Z",
+              "updatedAt": "2024-02-07T19:55:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJubJxM5vYZs4",
+          "commit": {
+            "abbreviatedOid": "e8878bb"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-07T20:00:44Z",
+          "updatedAt": "2024-02-07T20:00:45Z",
+          "comments": [
+            {
+              "originalPosition": 35,
+              "body": "I realize the capitalization predates your PR @aaronpk and you were just being consistent with the text immediately at hand. But your change made me notice it and seems like as good a time as any to fix it.  ",
+              "createdAt": "2024-02-07T20:00:45Z",
+              "updatedAt": "2024-02-07T20:00:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJubJxM5vY0je",
+          "commit": {
+            "abbreviatedOid": "8cded4f"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "Looks good to me. Thanks for doing the work! ",
+          "createdAt": "2024-02-07T20:55:24Z",
+          "updatedAt": "2024-02-07T20:55:24Z",
           "comments": []
         }
       ]
