@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-08T00:58:02.124620+00:00",
+  "timestamp": "2024-02-11T01:03:02.987117+00:00",
   "repo": "oauth-wg/oauth-identity-chaining",
   "labels": [
     {
@@ -3061,13 +3061,13 @@
       "labels": [],
       "body": "closes #67",
       "createdAt": "2024-02-07T19:47:05Z",
-      "updatedAt": "2024-02-07T21:11:35Z",
+      "updatedAt": "2024-02-09T19:10:15Z",
       "baseRepository": "oauth-wg/oauth-identity-chaining",
       "baseRefName": "main",
       "baseRefOid": "ef69bf6001c3fd0265b605a4e17a52d05b1194aa",
       "headRepository": "oauth-wg/oauth-identity-chaining",
       "headRefName": "rename",
-      "headRefOid": "8cded4f78d02daa44cf1becf1ae720d0588fad66",
+      "headRefOid": "686f2d28f51470e86c8e7a0d90a989e6debd0b49",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -3133,6 +3133,168 @@
           "body": "Looks good to me. Thanks for doing the work! ",
           "createdAt": "2024-02-07T20:55:24Z",
           "updatedAt": "2024-02-07T20:55:24Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOJubJxM5vl9YE",
+          "commit": {
+            "abbreviatedOid": "8cded4f"
+          },
+          "author": "arndt-s",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "LGTM, feel free to just close my comment and merge if you disagree.",
+          "createdAt": "2024-02-09T11:56:04Z",
+          "updatedAt": "2024-02-09T11:56:38Z",
+          "comments": [
+            {
+              "originalPosition": 17,
+              "body": "I'm unfortunately not able to comment on the introduction section but we write there:\r\n> Preserving this information is referred to as identity chaining. This document defines a mechanism for preserving identity chaining information across trust domains using a combination of ...\r\n\r\nI believe with this change we should also change that section for example to\r\n> This document referrers to this as \"chaining\" and defines a mechanism for preserving identity and authorization information across Domains.",
+              "createdAt": "2024-02-09T11:56:05Z",
+              "updatedAt": "2024-02-09T11:56:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJubJxM5vnoO6",
+          "commit": {
+            "abbreviatedOid": "8cded4f"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-09T15:28:01Z",
+          "updatedAt": "2024-02-09T15:28:01Z",
+          "comments": [
+            {
+              "originalPosition": 17,
+              "body": "Yeah, agree we should also probably update that section somewhat. ",
+              "createdAt": "2024-02-09T15:28:01Z",
+              "updatedAt": "2024-02-09T15:28:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJubJxM5vpE69",
+          "commit": {
+            "abbreviatedOid": "8cded4f"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-09T19:10:15Z",
+          "updatedAt": "2024-02-09T19:10:15Z",
+          "comments": [
+            {
+              "originalPosition": 17,
+              "body": "686f2d28f51470e86c8e7a0d90a989e6debd0b49 makes the update suggested by @arndt-s ",
+              "createdAt": "2024-02-09T19:10:15Z",
+              "updatedAt": "2024-02-09T19:10:15Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 77,
+      "id": "PR_kwDOJubJxM5mUu_k",
+      "title": "Consistent spacing in examples",
+      "url": "https://github.com/oauth-wg/oauth-identity-chaining/pull/77",
+      "state": "MERGED",
+      "author": "kamronbatman",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Made the spacing consistent in the examples.",
+      "createdAt": "2024-02-08T01:15:27Z",
+      "updatedAt": "2024-02-09T00:21:53Z",
+      "baseRepository": "oauth-wg/oauth-identity-chaining",
+      "baseRefName": "main",
+      "baseRefOid": "ef69bf6001c3fd0265b605a4e17a52d05b1194aa",
+      "headRepository": "kamronbatman/oauth-identity-chaining",
+      "headRefName": "kbatman/consistent-spacing",
+      "headRefOid": "7aa21c7af7fb05ed0e89bc574d650f45e2e374b7",
+      "closedAt": "2024-02-08T23:39:25Z",
+      "mergedAt": "2024-02-08T23:39:25Z",
+      "mergedBy": "bc-pi",
+      "mergeCommit": {
+        "oid": "efd7703a3c2dac68f00a0cdc04548d3926542fe3"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJubJxM5vaGIv",
+          "commit": {
+            "abbreviatedOid": "35591e9"
+          },
+          "author": "kamronbatman",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-08T01:16:10Z",
+          "updatedAt": "2024-02-08T01:16:10Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "Note that this already had a space. I assume we should have spaces, but if not, then we can do it the other way around. I am not married to either style.",
+              "createdAt": "2024-02-08T01:16:10Z",
+              "updatedAt": "2024-02-08T01:16:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJubJxM5vi08m",
+          "commit": {
+            "abbreviatedOid": "35591e9"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-08T22:51:51Z",
+          "updatedAt": "2024-02-08T22:51:51Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "Adding a space on the two lines with `\"access_token\":` kinda throws off the formatting of the right side of the example. I'd want to avoid that by re-flowing the JWT in them to have uniform line breaks on that side and still stay under the line length (suggested) limit. Or just go with the no spaces style throughout. The latter is probably easier/better anyway. If we even really need to have consistent spacing... ",
+              "createdAt": "2024-02-08T22:51:51Z",
+              "updatedAt": "2024-02-08T22:51:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJubJxM5vi4mF",
+          "commit": {
+            "abbreviatedOid": "35591e9"
+          },
+          "author": "kamronbatman",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-08T23:07:29Z",
+          "updatedAt": "2024-02-08T23:07:29Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "yeah, I am ok with no spaces if that is easier and ok.",
+              "createdAt": "2024-02-08T23:07:29Z",
+              "updatedAt": "2024-02-08T23:07:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJubJxM5vi8Xl",
+          "commit": {
+            "abbreviatedOid": "7aa21c7"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "Thanks for the update - LGTM now. ",
+          "createdAt": "2024-02-08T23:24:00Z",
+          "updatedAt": "2024-02-08T23:24:00Z",
           "comments": []
         }
       ]
