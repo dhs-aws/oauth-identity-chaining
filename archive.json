@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-13T00:59:05.826860+00:00",
+  "timestamp": "2024-02-15T00:59:03.362169+00:00",
   "repo": "oauth-wg/oauth-identity-chaining",
   "labels": [
     {
@@ -3295,6 +3295,74 @@
           "body": "Thanks for the update - LGTM now. ",
           "createdAt": "2024-02-08T23:24:00Z",
           "updatedAt": "2024-02-08T23:24:00Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 78,
+      "id": "PR_kwDOJubJxM5mxJ2w",
+      "title": "Add continuous integration example and move use cases to the appendix",
+      "url": "https://github.com/oauth-wg/oauth-identity-chaining/pull/78",
+      "state": "OPEN",
+      "author": "arndt-s",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "* Moves use cases to the appendix\r\n* Adds new continuous integration use case\r\n\r\nLet me know what you think!",
+      "createdAt": "2024-02-13T15:44:01Z",
+      "updatedAt": "2024-02-15T00:01:57Z",
+      "baseRepository": "oauth-wg/oauth-identity-chaining",
+      "baseRefName": "main",
+      "baseRefOid": "efd7703a3c2dac68f00a0cdc04548d3926542fe3",
+      "headRepository": "oauth-wg/oauth-identity-chaining",
+      "headRefName": "arndt-s/add-ci-use-case",
+      "headRefOid": "5126851be9920bc8a269a3ae65ae1b48d8700675",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "rendered preview of this PR can be seen https://drafts.oauth.net/oauth-identity-chaining/arndt-s/add-ci-use-case/draft-ietf-oauth-identity-chaining.html ",
+          "createdAt": "2024-02-15T00:01:56Z",
+          "updatedAt": "2024-02-15T00:01:56Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJubJxM5wJZ80",
+          "commit": {
+            "abbreviatedOid": "c2bd0de"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "Thanks @arndt-s, I've got a small editorial suggestion but otherwise think the use case is definitely a worthwhile addition. \r\n",
+          "createdAt": "2024-02-14T23:48:01Z",
+          "updatedAt": "2024-02-14T23:52:01Z",
+          "comments": [
+            {
+              "originalPosition": 22,
+              "body": "Suggest a minor change in wording here (that also anticipates the likely merge of #76):\r\n\r\n```suggestion\r\nThis sections outlines some use cases where the identity and authorization chaining described in this document can be applied. This section is not complete and other use cases not mentioned here are also valid.\r\n```",
+              "createdAt": "2024-02-14T23:48:01Z",
+              "updatedAt": "2024-02-14T23:52:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJubJxM5wJcFv",
+          "commit": {
+            "abbreviatedOid": "5126851"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-14T23:59:29Z",
+          "updatedAt": "2024-02-14T23:59:29Z",
           "comments": []
         }
       ]
