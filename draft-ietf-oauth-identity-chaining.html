@@ -1422,7 +1422,7 @@ appear in all capitals, as shown here.<a href="#section-1.1-1" class="pilcrow">�
 <p id="section-2.3.3-1">All of section 2.2 of <span>[<a href="#RFC8693" class="cite xref">RFC8693</a>]</span> applies. In addition, the following applies to implementations that conform to this specification.<a href="#section-2.3.3-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-2.3.3-2.1">
-              <p id="section-2.3.3-2.1.1">The "aud" claim in the returned JWT authorization grant <span class="bcp14">MUST</span> identify the requested authorization server. This corresponds with <a href="https://datatracker.ietf.org/doc/html/rfc7523#section-3">RFC 7523 Section 3, Point 3</a> and is there to reduce missuse and to prevent clients from presenting access tokens as an authorization grant to an authorization server in a different domain.<a href="#section-2.3.3-2.1.1" class="pilcrow">¶</a></p>
+              <p id="section-2.3.3-2.1.1">The "aud" claim in the returned JWT authorization grant <span class="bcp14">MUST</span> identify the requested authorization server. This corresponds with <a href="https://datatracker.ietf.org/doc/html/rfc7523#section-3">RFC 7523 Section 3, Point 3</a> and is there to reduce misuse and to prevent clients from presenting access tokens as an authorization grant to an authorization server in a different domain.<a href="#section-2.3.3-2.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-2.3.3-2.2">
               <p id="section-2.3.3-2.2.1">The "aud" claim included in the returned JWT authorization grant <span class="bcp14">MAY</span> identify multiple authorization servers, provided that trust relationships exist with them (e.g. through federation). It is <span class="bcp14">RECOMMENDED</span> that the "aud" claim is restricted to a single authorization server to prevent an authorization server in one domain from presenting the client's authorization grant to an authorization server in a different trust domain. For example, this will prevent the authorization server in Domain B from presenting the authorization grant it received from the client in Domain A to the authorization server for Domain C.<a href="#section-2.3.3-2.2.1" class="pilcrow">¶</a></p>
@@ -1435,7 +1435,7 @@ appear in all capitals, as shown here.<a href="#section-1.1-1" class="pilcrow">�
           <h4 id="name-example">
 <a href="#section-2.3.4" class="section-number selfRef">2.3.4. </a><a href="#name-example" class="section-name selfRef">Example</a>
           </h4>
-<p id="section-2.3.4-1">The example belows shows the message invoked by the client in trust domain A to perform token exchange with the authorization server in domain A (https://as.a.org/auth) to receive a JWT authorization grant for the authorization server in trust domain B (https://as.b.org/auth).<a href="#section-2.3.4-1" class="pilcrow">¶</a></p>
+<p id="section-2.3.4-1">The example below shows the message invoked by the client in trust domain A to perform token exchange with the authorization server in domain A (https://as.a.org/auth) to receive a JWT authorization grant for the authorization server in trust domain B (https://as.b.org/auth).<a href="#section-2.3.4-1" class="pilcrow">¶</a></p>
 <span id="name-token-exchange-request-2"></span><figure id="figure-2">
             <div class="alignLeft art-text artwork" id="section-2.3.4-2.1">
 <pre>
@@ -1594,7 +1594,7 @@ Cache-Control: no-cache, no-store
             <p id="section-2.5-2.2.1"><strong>Selective disclosure</strong>: Authorization servers <span class="bcp14">MAY</span> remove or hide certain claims due to privacy requirements or reduced trust towards the targeting trust domain. To hide and enclose claims <span>[<a href="#I-D.ietf-oauth-selective-disclosure-jwt" class="cite xref">I-D.ietf-oauth-selective-disclosure-jwt</a>]</span> <span class="bcp14">MAY</span> be used.<a href="#section-2.5-2.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-2.5-2.3">
-            <p id="section-2.5-2.3.1"><strong>Controlling scope</strong>: Clients <span class="bcp14">MAY</span> use the scope parameter to control transcribed claims (e.g. downscoping). Authorization Servers <span class="bcp14">SHOULD</span> verify that requested scopes are not higher priveleged than the scopes of presented subject_token.<a href="#section-2.5-2.3.1" class="pilcrow">¶</a></p>
+            <p id="section-2.5-2.3.1"><strong>Controlling scope</strong>: Clients <span class="bcp14">MAY</span> use the scope parameter to control transcribed claims (e.g. downscoping). Authorization Servers <span class="bcp14">SHOULD</span> verify that requested scopes are not higher privileged than the scopes of presented subject_token.<a href="#section-2.5-2.3.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-2.5-2.4">
             <p id="section-2.5-2.4.1"><strong>Including JWT authorization grant claims</strong>: The authorization server performing the assertion flow <span class="bcp14">MAY</span> leverage claims from the presented JWT authorization grant and include them in the returned access token. The populated claims <span class="bcp14">SHOULD</span> be namespaced or validated to prevent the injection of invalid claims.<a href="#section-2.5-2.4.1" class="pilcrow">¶</a></p>
@@ -1710,7 +1710,7 @@ Cache-Control: no-cache, no-store
         <h3 id="name-continuous-integration-acce">
 <a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-continuous-integration-acce" class="section-name selfRef">Continuous Integration Accessing External Resources</a>
         </h3>
-<p id="appendix-A.2-1">A continuous integration system needs to access external resources, for example to upload an artifact or to run tests. These resources are protected by different authorization servers. The identity information of the build, for example metadata such as commit hashes or repository, should be preserved and carried across the domain boundary. This not just prevents maintaining credentials it also allows fined grained access control at the resource.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-1">A continuous integration system needs to access external resources, for example to upload an artifact or to run tests. These resources are protected by different authorization servers. The identity information of the build, for example metadata such as commit hashes or repository, should be preserved and carried across the domain boundary. This not just prevents maintaining credentials it also allows fine grained access control at the resource.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="api-security-use-case">
@@ -1737,7 +1737,7 @@ Cache-Control: no-cache, no-store
 <p id="appendix-B.1-1">Resources servers may act as clients if the following is true:<a href="#appendix-B.1-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-B.1-2.1">
-            <p id="appendix-B.1-2.1.1">Authorization Server B is reachable by the resource server by network and is able to perform the appropiate client authentication (if required).<a href="#appendix-B.1-2.1.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.1-2.1.1">Authorization Server B is reachable by the resource server by network and is able to perform the appropriate client authentication (if required).<a href="#appendix-B.1-2.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-B.1-2.2">
             <p id="appendix-B.1-2.2.1">The resource server has the ability to determine the authorization server of the protected resource outside its trust domain.<a href="#appendix-B.1-2.2.1" class="pilcrow">¶</a></p>
