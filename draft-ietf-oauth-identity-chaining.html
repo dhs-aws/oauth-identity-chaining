@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta content="Common,Latin" name="scripts">
 <meta content="initial-scale=1.0" name="viewport">
-<title>Identity Chaining across Trust Domains</title>
+<title>OAuth Identity and Authorization Chaining Across Domains</title>
 <meta content="Arndt Schwenkschuster" name="author">
 <meta content="Pieter Kasselmann" name="author">
 <meta content="Kelley Burgin" name="author">
 <meta content="Mike Jenkins" name="author">
 <meta content="Brian Campbell" name="author">
 <meta content="
-       This specification defines a mechanism to preserve identity and call chain information across trust domains that use the OAuth 2.0 Framework. 
+       This specification defines a mechanism to preserve identity information and federate authorization across trust domains that use the OAuth 2.0 Framework. 
     " name="description">
 <meta content="xml2rfc 3.19.2" name="generator">
 <meta content="draft-ietf-oauth-identity-chaining-latest" name="ietf.draft">
@@ -1027,7 +1027,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <table class="ears">
 <thead><tr>
 <td class="left">Internet-Draft</td>
-<td class="center">Identity Chaining across Trust Domains</td>
+<td class="center">OAuth Identity and Authorization Chainin</td>
 <td class="right">February 2024</td>
 </tr></thead>
 <tfoot><tr>
@@ -1076,10 +1076,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </dd>
 </dl>
 </div>
-<h1 id="title">Identity Chaining across Trust Domains</h1>
+<h1 id="title">OAuth Identity and Authorization Chaining Across Domains</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">This specification defines a mechanism to preserve identity and call chain information across trust domains that use the OAuth 2.0 Framework.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">This specification defines a mechanism to preserve identity information and federate authorization across trust domains that use the OAuth 2.0 Framework.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-discussion-venues">
@@ -1149,7 +1149,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
-            <p id="section-toc.1-1.2.1"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-identity-chaining-across-tr" class="internal xref">Identity Chaining Across Trust Domains</a></p>
+            <p id="section-toc.1-1.2.1"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-identity-and-authorization-" class="internal xref">Identity and Authorization Chaining Across Domains</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.1">
                 <p id="section-toc.1-1.2.2.1.1" class="keepWithNext"><a href="#section-2.1" class="auto internal xref">2.1</a>.  <a href="#name-overview" class="internal xref">Overview</a></p>
@@ -1264,7 +1264,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">Applications often require access to resources that are distributed across multiple trust domains where each trust domain has its own OAuth 2.0 authorization server. As a result, developers are often faced with the situation that a protected resource is located in a different trust domain and thus protected by a different authorization server. A request may transverse multiple resource servers in multiple trust domains before completing. All protected resources involved in such a request need to know on whose behalf the request was originally initiated (i.e. the user), what authorization was granted and optionally which other resource servers were called prior to making an authorization decision. This information needs to be preserved, even when a request crosses one or more trust domains. Preserving this information is referred to as identity chaining. This document defines a mechanism for preserving identity chaining information across trust domains using a combination of OAuth 2.0 Token Exchange <span>[<a href="#RFC8693" class="cite xref">RFC8693</a>]</span> and JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants <span>[<a href="#RFC7523" class="cite xref">RFC7523</a>]</span>.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-1">Applications often require access to resources that are distributed across multiple trust domains where each trust domain has its own OAuth 2.0 authorization server. As a result, developers are often faced with the situation that a protected resource is located in a different trust domain and thus protected by a different authorization server. A request may transverse multiple resource servers in multiple trust domains before completing. All protected resources involved in such a request need to know on whose behalf the request was originally initiated (i.e. the user), what authorization was granted and optionally which other resource servers were called prior to making an authorization decision. This information needs to be preserved, even when a request crosses one or more trust domains. This document referrers to this as "chaining" and defines a mechanism for preserving identity and authorization information across domains using a combination of OAuth 2.0 Token Exchange <span>[<a href="#RFC8693" class="cite xref">RFC8693</a>]</span> and JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants <span>[<a href="#RFC7523" class="cite xref">RFC7523</a>]</span>.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <div id="requirements-language">
 <section id="section-1.1">
         <h3 id="name-requirements-language">
@@ -1278,20 +1278,20 @@ appear in all capitals, as shown here.<a href="#section-1.1-1" class="pilcrow">�
 </div>
 </section>
 </div>
-<div id="identity-chaining-across-trust-domains">
+<div id="identity-and-authorization-chaining-across-domains">
 <section id="section-2">
-      <h2 id="name-identity-chaining-across-tr">
-<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-identity-chaining-across-tr" class="section-name selfRef">Identity Chaining Across Trust Domains</a>
+      <h2 id="name-identity-and-authorization-">
+<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-identity-and-authorization-" class="section-name selfRef">Identity and Authorization Chaining Across Domains</a>
       </h2>
-<p id="section-2-1">This specification describes a combination of OAuth 2.0 Token Exchange <span>[<a href="#RFC8693" class="cite xref">RFC8693</a>]</span> and JWT Profile for OAuth 2.0 Client Authentication and Authorization Grants <span>[<a href="#RFC7523" class="cite xref">RFC7523</a>]</span> to achieve identity chaining across trust domains.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-1">This specification describes a combination of OAuth 2.0 Token Exchange <span>[<a href="#RFC8693" class="cite xref">RFC8693</a>]</span> and JWT Profile for OAuth 2.0 Client Authentication and Authorization Grants <span>[<a href="#RFC7523" class="cite xref">RFC7523</a>]</span> to achieve identity and authorization chaining across domains.<a href="#section-2-1" class="pilcrow">¶</a></p>
 <p id="section-2-2">A client in trust domain A that needs to access a resource server in trust domain B requests a JWT authorization grant from the authorization server for trust domain A via a token exchange. The client in trust domain A presents the received grant as an assertion to the authorization server in domain B in order to obtain an access token for the protected resource in domain B. The client in domain A may be a resource server, or it may be the authorization server itself.<a href="#section-2-2" class="pilcrow">¶</a></p>
 <div id="overview">
 <section id="section-2.1">
         <h3 id="name-overview">
 <a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-overview" class="section-name selfRef">Overview</a>
         </h3>
-<p id="section-2.1-1">The Identity Chaining flow outlined below describes how a combination of OAuth 2.0 Token Exchange <span>[<a href="#RFC8693" class="cite xref">RFC8693</a>]</span> and JWT Profile for OAuth 2.0 Client Authentication and Authorization Grants <span>[<a href="#RFC7523" class="cite xref">RFC7523</a>]</span> are used to address the use cases identified. The appendix include two additional examples that describe how this flow is used. In one example, the resource server acts as the client and in the other, the authorization server acts as the client.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
-<span id="name-identity-chaining-flow"></span><figure id="figure-1">
+<p id="section-2.1-1">The identity and authorization chaining flow outlined below describes how a combination of OAuth 2.0 Token Exchange <span>[<a href="#RFC8693" class="cite xref">RFC8693</a>]</span> and JWT Profile for OAuth 2.0 Client Authentication and Authorization Grants <span>[<a href="#RFC7523" class="cite xref">RFC7523</a>]</span> are used to address the use cases identified. The appendix include two additional examples that describe how this flow is used. In one example, the resource server acts as the client and in the other, the authorization server acts as the client.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+<span id="name-identity-and-authorization-c"></span><figure id="figure-1">
           <div class="alignLeft art-text artwork" id="section-2.1-2.1">
 <pre>
 +-------------+                            +-------------+ +---------+
@@ -1330,7 +1330,7 @@ appear in all capitals, as shown here.<a href="#section-1.1-1" class="pilcrow">�
 </pre>
 </div>
 <figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
-<a href="#name-identity-chaining-flow" class="selfRef">Identity Chaining Flow</a>
+<a href="#name-identity-and-authorization-c" class="selfRef">Identity and Authorization Chaining Flow</a>
           </figcaption></figure>
 <p id="section-2.1-3">The flow illustrated in Figure 1 shows the steps the client in trust Domain A needs to perform to access a protected resource in trust domain B. In this flow, the client has a way to discover the authorization server in Domain B and a trust relationship exists between Domain A and Domain B (e.g., through federation). It includes the following:<a href="#section-2.1-3" class="pilcrow">¶</a></p>
 <ul class="normal">
@@ -1908,7 +1908,10 @@ Cache-Control: no-cache, no-store
           <p id="appendix-D-3.6.1">use more specific term "JWT authorization grant"<a href="#appendix-D-3.6.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-D-3.7">
-          <p id="appendix-D-3.7.1">move use cases to appendix and add continuous integration use case<a href="#appendix-D-3.7.1" class="pilcrow">¶</a></p>
+          <p id="appendix-D-3.7.1">changed name to "OAuth Identity and Authorization Chaining Across Domains"<a href="#appendix-D-3.7.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-D-3.8">
+          <p id="appendix-D-3.8.1">move use cases to appendix and add continuous integration use case<a href="#appendix-D-3.8.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <p id="appendix-D-4">-00<a href="#appendix-D-4" class="pilcrow">¶</a></p>
