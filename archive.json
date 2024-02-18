@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-15T00:59:03.362169+00:00",
+  "timestamp": "2024-02-18T01:02:18.719710+00:00",
   "repo": "oauth-wg/oauth-identity-chaining",
   "labels": [
     {
@@ -556,7 +556,7 @@
       "url": "https://github.com/oauth-wg/oauth-identity-chaining/issues/51",
       "state": "CLOSED",
       "author": "kburgin3",
-      "authorAssociation": "NONE",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [
         "arndt-s"
       ],
@@ -667,31 +667,39 @@
       "id": "I_kwDOJubJxM55DHGD",
       "title": "Clarify that draft is not limited to the use cases",
       "url": "https://github.com/oauth-wg/oauth-identity-chaining/issues/66",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "PieterKas",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Reword/refine use cases and restructure text in a way that it is clear to a reader that the spec can be used for use cases other than the ones in the spec.",
       "createdAt": "2023-12-07T14:19:38Z",
-      "updatedAt": "2023-12-07T14:19:38Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-02-16T09:19:34Z",
+      "closedAt": "2024-02-16T09:19:34Z",
+      "comments": [
+        {
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Looks like PR #78 makes this clarification. ",
+          "createdAt": "2024-02-15T15:09:10Z",
+          "updatedAt": "2024-02-15T15:09:10Z"
+        }
+      ]
     },
     {
       "number": 67,
       "id": "I_kwDOJubJxM55DI5W",
       "title": "Change spec name to focus on Authz",
       "url": "https://github.com/oauth-wg/oauth-identity-chaining/issues/67",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "PieterKas",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Change name to focus on authorization (e.g. cross-domain authorization). Purpose of renaming is to create clarity that this is a mechanism for cross domain authz and that identity flows with the authorization. Add text to make it clear how identity chaining is achieved as a result of using this spec (the idea that the identity is following the authorization).",
       "createdAt": "2023-12-07T14:23:30Z",
-      "updatedAt": "2024-02-02T21:39:19Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-16T22:55:37Z",
+      "closedAt": "2024-02-16T22:55:37Z",
       "comments": [
         {
           "author": "aaronpk",
@@ -761,7 +769,52 @@
       "labels": [],
       "body": "Currently the text says \"its token\" without giving any guidance on where this token came from or what kind of token it is. (ID token? access token? refresh token?) While not being prescriptive about the type of token is useful to enable more use cases, there should at least be some clues about how this token was obtained in the first place.",
       "createdAt": "2024-02-07T19:44:36Z",
-      "updatedAt": "2024-02-07T19:44:36Z",
+      "updatedAt": "2024-02-16T22:52:01Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "arndt-s",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I agree that the text is not clear here.\r\n\r\nA few questions arise to me when thinking about it:\r\n- Does it make sense to limit the subject_token to access tokens? Are there reasons to allow id or refresh tokens?\r\n- Should we further specify the other parameters, in particular \"actor_token\" and \"actor_token_type\"? Allowing everyone to exchange access_tokens to an authorization_grant of another domain can be critical and I believe the spec would benefit of making the actor parameters required in this case.",
+          "createdAt": "2024-02-16T11:34:15Z",
+          "updatedAt": "2024-02-16T11:34:15Z"
+        },
+        {
+          "author": "PieterKas",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "@aaronpk and @bc-pi would there ever be a use case for using the refresh token? \r\n\r\nI think this is either the access or the ID token (what would be the use case for ID Tokens in this case and would it be an abuse of the ID Token if we allowed it)?\r\n\r\nThe other thing to clarify is whether this is the subject or actor token in the token exchange protocol. The subject token (per RFC rfc8693) is mandatory, but the way this is written suggest that it is the client's token (\"It's token\"), which raises the question if this is the actor token and if we need to make the actor token mandatory. \r\n\r\nIf the client is running without user interaction (batch job), it would need to submit the same token for both the subject token and the actor token. ",
+          "createdAt": "2024-02-16T11:36:46Z",
+          "updatedAt": "2024-02-16T11:37:07Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I don't think we should be prescriptive or restrictive about the kinds token(s) a client would exchange. Rather maybe just provide a bit more context and explanation about some of the situations and how the client might have come by the \"initial\" token(s).  ",
+          "createdAt": "2024-02-16T22:19:52Z",
+          "updatedAt": "2024-02-16T22:19:52Z"
+        },
+        {
+          "author": "aaronpk",
+          "authorAssociation": "MEMBER",
+          "body": "My use case involves ID tokens and SAML assertions. I can easily imagine a use case for refresh tokens (basically any time you would exchange an access token but the access token might be expired, e.g. long running tasks, etc). I don't think this spec should add any restrictions on token types, since the Token Exchange spec already provides the flexibility needed. My original comment was more that a reader would have no context for how an initial token would be obtained by reading the current text. (Also \"its token\" is slightly misleading because it might be a delegated token in which case who does the token actually belong to? the client or the user?)",
+          "createdAt": "2024-02-16T22:52:00Z",
+          "updatedAt": "2024-02-16T22:52:00Z"
+        }
+      ]
+    },
+    {
+      "number": 79,
+      "id": "I_kwDOJubJxM5_dbrY",
+      "title": "Should we allow identity chaining with DPoP tokens?",
+      "url": "https://github.com/oauth-wg/oauth-identity-chaining/issues/79",
+      "state": "OPEN",
+      "author": "arndt-s",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "If the user's token is a sender constraint token \"DPoP\", can it be exchanged by the client to an authorization grant for another domain? Does the authorization server verify proof of possession?",
+      "createdAt": "2024-02-16T11:36:39Z",
+      "updatedAt": "2024-02-16T11:36:39Z",
       "closedAt": null,
       "comments": []
     }
@@ -3054,24 +3107,26 @@
       "id": "PR_kwDOJubJxM5mTPNq",
       "title": "update draft name",
       "url": "https://github.com/oauth-wg/oauth-identity-chaining/pull/76",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "aaronpk",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "closes #67",
       "createdAt": "2024-02-07T19:47:05Z",
-      "updatedAt": "2024-02-09T19:10:15Z",
+      "updatedAt": "2024-02-16T22:55:37Z",
       "baseRepository": "oauth-wg/oauth-identity-chaining",
       "baseRefName": "main",
-      "baseRefOid": "ef69bf6001c3fd0265b605a4e17a52d05b1194aa",
+      "baseRefOid": "95a954d90e9d39d3b445014a871fce04b739e233",
       "headRepository": "oauth-wg/oauth-identity-chaining",
       "headRefName": "rename",
-      "headRefOid": "686f2d28f51470e86c8e7a0d90a989e6debd0b49",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "ba8373116c32adc7cf035a2ee3969c7e0e2eec88",
+      "closedAt": "2024-02-16T22:55:36Z",
+      "mergedAt": "2024-02-16T22:55:36Z",
+      "mergedBy": "bc-pi",
+      "mergeCommit": {
+        "oid": "d05faa5891a52783b35fe7623abcc54e1e2f7998"
+      },
       "comments": [
         {
           "author": "bc-pi",
@@ -3079,6 +3134,13 @@
           "body": "an editor's copy preview of this PR can be seen at https://drafts.oauth.net/oauth-identity-chaining/rename/draft-ietf-oauth-identity-chaining.html ",
           "createdAt": "2024-02-07T21:11:34Z",
           "updatedAt": "2024-02-07T21:11:34Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Going to go ahead and merge this one as Pieter said we'd do today https://mailarchive.ietf.org/arch/msg/oauth/_nRDh3ciXDk1A9H_3CAs1DwPV5g/, which also says we'll publish a new draft but we can do that next week or so. ",
+          "createdAt": "2024-02-16T22:55:20Z",
+          "updatedAt": "2024-02-16T22:55:20Z"
         }
       ],
       "reviews": [
@@ -3304,24 +3366,26 @@
       "id": "PR_kwDOJubJxM5mxJ2w",
       "title": "Add continuous integration example and move use cases to the appendix",
       "url": "https://github.com/oauth-wg/oauth-identity-chaining/pull/78",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "arndt-s",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "* Moves use cases to the appendix\r\n* Adds new continuous integration use case\r\n\r\nLet me know what you think!",
       "createdAt": "2024-02-13T15:44:01Z",
-      "updatedAt": "2024-02-15T00:01:57Z",
+      "updatedAt": "2024-02-16T11:09:50Z",
       "baseRepository": "oauth-wg/oauth-identity-chaining",
       "baseRefName": "main",
       "baseRefOid": "efd7703a3c2dac68f00a0cdc04548d3926542fe3",
       "headRepository": "oauth-wg/oauth-identity-chaining",
       "headRefName": "arndt-s/add-ci-use-case",
-      "headRefOid": "5126851be9920bc8a269a3ae65ae1b48d8700675",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "fb9f794305d865f0aaca958126e6b5920cd891f4",
+      "closedAt": "2024-02-16T09:19:33Z",
+      "mergedAt": "2024-02-16T09:19:33Z",
+      "mergedBy": "arndt-s",
+      "mergeCommit": {
+        "oid": "2e30a3d1dbb9d093a23a0c3f99821e0e5dd1a08d"
+      },
       "comments": [
         {
           "author": "bc-pi",
@@ -3364,8 +3428,151 @@
           "createdAt": "2024-02-14T23:59:29Z",
           "updatedAt": "2024-02-14T23:59:29Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOJubJxM5wOuna",
+          "commit": {
+            "abbreviatedOid": "5126851"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-15T14:20:45Z",
+          "updatedAt": "2024-02-15T14:20:45Z",
+          "comments": [
+            {
+              "originalPosition": 27,
+              "body": "per Dr. Kelley W Burgin:\r\n\r\n```suggestion\r\n## Continuous Integration Accessing External Resources\r\n```",
+              "createdAt": "2024-02-15T14:20:45Z",
+              "updatedAt": "2024-02-15T14:20:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJubJxM5wWMtJ",
+          "commit": {
+            "abbreviatedOid": "fb9f794"
+          },
+          "author": "PieterKas",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-16T11:09:29Z",
+          "updatedAt": "2024-02-16T11:09:50Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "replace \"fined\" with \"fine\"",
+              "createdAt": "2024-02-16T11:09:29Z",
+              "updatedAt": "2024-02-16T11:09:50Z"
+            }
+          ]
         }
       ]
+    },
+    {
+      "number": 80,
+      "id": "PR_kwDOJubJxM5nFAQB",
+      "title": "Fix typos",
+      "url": "https://github.com/oauth-wg/oauth-identity-chaining/pull/80",
+      "state": "MERGED",
+      "author": "arndt-s",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes some typos ",
+      "createdAt": "2024-02-16T11:47:38Z",
+      "updatedAt": "2024-02-16T13:22:18Z",
+      "baseRepository": "oauth-wg/oauth-identity-chaining",
+      "baseRefName": "main",
+      "baseRefOid": "2e30a3d1dbb9d093a23a0c3f99821e0e5dd1a08d",
+      "headRepository": "oauth-wg/oauth-identity-chaining",
+      "headRefName": "arndt-s/fix_typos",
+      "headRefOid": "0594c0ed7f4e0ec77f1907c8d79c381e141be7b9",
+      "closedAt": "2024-02-16T13:22:17Z",
+      "mergedAt": "2024-02-16T13:22:17Z",
+      "mergedBy": "bc-pi",
+      "mergeCommit": {
+        "oid": "95a954d90e9d39d3b445014a871fce04b739e233"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJubJxM5wWcz6",
+          "commit": {
+            "abbreviatedOid": "0594c0e"
+          },
+          "author": "PieterKas",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-16T11:50:09Z",
+          "updatedAt": "2024-02-16T11:50:09Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOJubJxM5wXRq5",
+          "commit": {
+            "abbreviatedOid": "0594c0e"
+          },
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-16T13:22:08Z",
+          "updatedAt": "2024-02-16T13:22:08Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 81,
+      "id": "PR_kwDOJubJxM5nFCTz",
+      "title": "Add CODEOWNERS file",
+      "url": "https://github.com/oauth-wg/oauth-identity-chaining/pull/81",
+      "state": "OPEN",
+      "author": "arndt-s",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Adds a CODEOWNERS file with the authors of this draft.",
+      "createdAt": "2024-02-16T11:53:17Z",
+      "updatedAt": "2024-02-16T22:18:04Z",
+      "baseRepository": "oauth-wg/oauth-identity-chaining",
+      "baseRefName": "main",
+      "baseRefOid": "2e30a3d1dbb9d093a23a0c3f99821e0e5dd1a08d",
+      "headRepository": "oauth-wg/oauth-identity-chaining",
+      "headRefName": "arndt-s/add_codeowners",
+      "headRefOid": "71505aa848349690e51643da27b583bc446d5146",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "arndt-s",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "@aaronpk can you please add Kelly and Pieter into the identity-chaining team?",
+          "createdAt": "2024-02-16T11:54:44Z",
+          "updatedAt": "2024-02-16T11:54:44Z"
+        },
+        {
+          "author": "aaronpk",
+          "authorAssociation": "MEMBER",
+          "body": "I need them to accept the invites to the org before I can add them into the team.",
+          "createdAt": "2024-02-16T17:18:29Z",
+          "updatedAt": "2024-02-16T17:18:29Z"
+        },
+        {
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "There's also already a [CODEOWNERS](https://github.com/oauth-wg/oauth-identity-chaining/blob/main/.github/CODEOWNERS) file (that has errors) in the [.github/](https://github.com/oauth-wg/oauth-identity-chaining/tree/main/.github) directory that the I-D template repo setup process put there. We should probably get that one fixed up with the right people/accounts rather than add a new one? ",
+          "createdAt": "2024-02-16T22:07:09Z",
+          "updatedAt": "2024-02-16T22:18:04Z"
+        }
+      ],
+      "reviews": []
     }
   ]
 }
