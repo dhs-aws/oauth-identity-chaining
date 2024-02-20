@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-18T01:02:18.719710+00:00",
+  "timestamp": "2024-02-20T00:57:43.078307+00:00",
   "repo": "oauth-wg/oauth-identity-chaining",
   "labels": [
     {
@@ -3114,7 +3114,7 @@
       "labels": [],
       "body": "closes #67",
       "createdAt": "2024-02-07T19:47:05Z",
-      "updatedAt": "2024-02-16T22:55:37Z",
+      "updatedAt": "2024-02-19T19:55:45Z",
       "baseRepository": "oauth-wg/oauth-identity-chaining",
       "baseRefName": "main",
       "baseRefOid": "95a954d90e9d39d3b445014a871fce04b739e233",
@@ -3254,6 +3254,26 @@
               "body": "686f2d28f51470e86c8e7a0d90a989e6debd0b49 makes the update suggested by @arndt-s ",
               "createdAt": "2024-02-09T19:10:15Z",
               "updatedAt": "2024-02-09T19:10:15Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJubJxM5wmVzc",
+          "commit": {
+            "abbreviatedOid": "ba83731"
+          },
+          "author": "kamronbatman",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-19T19:55:45Z",
+          "updatedAt": "2024-02-19T19:55:45Z",
+          "comments": [
+            {
+              "originalPosition": 27,
+              "body": "@aaronpk should this match the title field on line 11? Same for L117",
+              "createdAt": "2024-02-19T19:55:45Z",
+              "updatedAt": "2024-02-19T19:56:04Z"
             }
           ]
         }
