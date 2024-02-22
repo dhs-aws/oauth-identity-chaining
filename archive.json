@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-20T00:57:43.078307+00:00",
+  "timestamp": "2024-02-22T00:57:58.947599+00:00",
   "repo": "oauth-wg/oauth-identity-chaining",
   "labels": [
     {
@@ -308,15 +308,15 @@
       "id": "I_kwDOJubJxM5rEwhr",
       "title": "Additional profile of Token Exchange",
       "url": "https://github.com/oauth-wg/oauth-identity-chaining/issues/31",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "PieterKas",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Comment from Kelly:\r\n\r\nA.2.(A) Maybe we should cover this step (\u201cThe resource server of Domain A requests a token for the protected resource in Domain B from the authorization server in Domain A\u201d)",
       "createdAt": "2023-07-10T09:59:24Z",
-      "updatedAt": "2023-07-10T10:04:40Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-20T16:16:56Z",
+      "closedAt": "2024-02-20T16:16:01Z",
       "comments": [
         {
           "author": "PieterKas",
@@ -324,6 +324,20 @@
           "body": "Could this be the same as for the token exchange between the client and the authorization server in Domain A? The outline then looks like this:\r\n\r\nRS Domain A <-> AS Domain A Token exchange profile in this spec\r\nAS Domain A <-> AS Domain B Token exchange profile in this spec\r\nRS Domain A <-> RS Domain B Assertion flow.",
           "createdAt": "2023-07-10T10:02:00Z",
           "updatedAt": "2023-07-10T10:04:40Z"
+        },
+        {
+          "author": "kburgin3",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I'm now happy with the current text. Closing the issue",
+          "createdAt": "2024-02-20T16:15:47Z",
+          "updatedAt": "2024-02-20T16:15:47Z"
+        },
+        {
+          "author": "kburgin3",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Current text is sufficient. Saying the first request in the protocol is out of scope is fine",
+          "createdAt": "2024-02-20T16:16:55Z",
+          "updatedAt": "2024-02-20T16:16:55Z"
         }
       ]
     },
@@ -814,7 +828,31 @@
       "labels": [],
       "body": "If the user's token is a sender constraint token \"DPoP\", can it be exchanged by the client to an authorization grant for another domain? Does the authorization server verify proof of possession?",
       "createdAt": "2024-02-16T11:36:39Z",
-      "updatedAt": "2024-02-16T11:36:39Z",
+      "updatedAt": "2024-02-20T21:32:03Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I don't think we should disallow it but I also I don't know what or how much we can or should say about it in the draft. Also DPoP isn't the only key-binding / proof-of-possession / sender constraining mechanism for OAuth tokens (there's also RFC8705 for MTLS, for example). All the sender constraining mechanisms can be tricky in the context of any kind of exchange. \r\n  \r\nIn the case that the client making the token exchange request is an RS that'd received a sender constrained access token on an inbound API call, I imagine it similar to how Introspection works with sender constrained tokens - the RS does the PoP validation locally but sends the token to the AS who does not verify proof of possession. \r\n\r\nDPoP (or MTLS FWIW) could reasonably be used to bind the access token returned from the JWT authz grant call. \r\n\r\nSome of the other cases are harder to nail down and/or not feasible due to sender-constrained being sender constrained. \r\n\r\nSorry, I'm not sure if any of the above rambling is helpful. But it's what I could come with. ",
+          "createdAt": "2024-02-20T21:32:01Z",
+          "updatedAt": "2024-02-20T21:32:01Z"
+        }
+      ]
+    },
+    {
+      "number": 82,
+      "id": "I_kwDOJubJxM5_3cD7",
+      "title": "relax recommendation against requested_token_type use",
+      "url": "https://github.com/oauth-wg/oauth-identity-chaining/issues/82",
+      "state": "OPEN",
+      "author": "bc-pi",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Placeholder issue noting that @aaronpk's use case utilizes `requested_token_type` while the the current text https://www.ietf.org/archive/id/draft-ietf-oauth-identity-chaining-01.html#section-2.3.1-1 has a `SHOULD NOT`.  With the recent change to limit token types to JWTs https://github.com/oauth-wg/oauth-identity-chaining/issues/45 that `SHOULD NOT` isn't as meaningful/useful. Suggestion (from me) is to remove mention/treatment of the parameter from 2.3.1 https://www.ietf.org/archive/id/draft-ietf-oauth-identity-chaining-01.html#name-token-exchange-request",
+      "createdAt": "2024-02-20T20:42:27Z",
+      "updatedAt": "2024-02-21T15:31:57Z",
       "closedAt": null,
       "comments": []
     }
