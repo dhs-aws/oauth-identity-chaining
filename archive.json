@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-22T00:57:58.947599+00:00",
+  "timestamp": "2024-02-25T01:02:25.722517+00:00",
   "repo": "oauth-wg/oauth-identity-chaining",
   "labels": [
     {
@@ -852,9 +852,17 @@
       "labels": [],
       "body": "Placeholder issue noting that @aaronpk's use case utilizes `requested_token_type` while the the current text https://www.ietf.org/archive/id/draft-ietf-oauth-identity-chaining-01.html#section-2.3.1-1 has a `SHOULD NOT`.  With the recent change to limit token types to JWTs https://github.com/oauth-wg/oauth-identity-chaining/issues/45 that `SHOULD NOT` isn't as meaningful/useful. Suggestion (from me) is to remove mention/treatment of the parameter from 2.3.1 https://www.ietf.org/archive/id/draft-ietf-oauth-identity-chaining-01.html#name-token-exchange-request",
       "createdAt": "2024-02-20T20:42:27Z",
-      "updatedAt": "2024-02-21T15:31:57Z",
+      "updatedAt": "2024-02-23T17:20:34Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "aaronpk",
+          "authorAssociation": "MEMBER",
+          "body": "We discussed on the Feb 23 call and there was general agreement that removing the parameter is the right call, and won't have any negative consequences on implementations of this draft.",
+          "createdAt": "2024-02-23T17:20:33Z",
+          "updatedAt": "2024-02-23T17:20:33Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -3630,6 +3638,32 @@
           "updatedAt": "2024-02-16T22:18:04Z"
         }
       ],
+      "reviews": []
+    },
+    {
+      "number": 83,
+      "id": "PR_kwDOJubJxM5nyfXf",
+      "title": "remove recommendation to not use requested_token_type",
+      "url": "https://github.com/oauth-wg/oauth-identity-chaining/pull/83",
+      "state": "OPEN",
+      "author": "bc-pi",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "remove recommendation to not use RFC8693's requested_token_type (fix issue #82)\r\n\r\npreview of editor's copy https://drafts.oauth.net/oauth-identity-chaining/relax-should-not-request-token-type/draft-ietf-oauth-identity-chaining.html ",
+      "createdAt": "2024-02-23T19:52:55Z",
+      "updatedAt": "2024-02-23T19:53:56Z",
+      "baseRepository": "oauth-wg/oauth-identity-chaining",
+      "baseRefName": "main",
+      "baseRefOid": "d05faa5891a52783b35fe7623abcc54e1e2f7998",
+      "headRepository": "oauth-wg/oauth-identity-chaining",
+      "headRefName": "relax-should-not-request-token-type",
+      "headRefOid": "db226093158a4a79613788efc2a92b39c074af48",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
       "reviews": []
     }
   ]
