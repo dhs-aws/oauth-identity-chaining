@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-29T00:57:56.597833+00:00",
+  "timestamp": "2024-03-03T01:01:29.358294+00:00",
   "repo": "oauth-wg/oauth-identity-chaining",
   "labels": [
     {
@@ -828,7 +828,7 @@
       "labels": [],
       "body": "If the user's token is a sender constraint token \"DPoP\", can it be exchanged by the client to an authorization grant for another domain? Does the authorization server verify proof of possession?",
       "createdAt": "2024-02-16T11:36:39Z",
-      "updatedAt": "2024-02-20T21:32:03Z",
+      "updatedAt": "2024-03-01T15:18:04Z",
       "closedAt": null,
       "comments": [
         {
@@ -837,6 +837,13 @@
           "body": "I don't think we should disallow it but I also I don't know what or how much we can or should say about it in the draft. Also DPoP isn't the only key-binding / proof-of-possession / sender constraining mechanism for OAuth tokens (there's also RFC8705 for MTLS, for example). All the sender constraining mechanisms can be tricky in the context of any kind of exchange. \r\n  \r\nIn the case that the client making the token exchange request is an RS that'd received a sender constrained access token on an inbound API call, I imagine it similar to how Introspection works with sender constrained tokens - the RS does the PoP validation locally but sends the token to the AS who does not verify proof of possession. \r\n\r\nDPoP (or MTLS FWIW) could reasonably be used to bind the access token returned from the JWT authz grant call. \r\n\r\nSome of the other cases are harder to nail down and/or not feasible due to sender-constrained being sender constrained. \r\n\r\nSorry, I'm not sure if any of the above rambling is helpful. But it's what I could come with. ",
           "createdAt": "2024-02-20T21:32:01Z",
           "updatedAt": "2024-02-20T21:32:01Z"
+        },
+        {
+          "author": "kburgin3",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I'd like mTLS sender constrained tokens. Can we consider adding sender constraining mechanisms to the draft?",
+          "createdAt": "2024-03-01T15:18:03Z",
+          "updatedAt": "2024-03-01T15:18:03Z"
         }
       ]
     },
@@ -907,9 +914,17 @@
       "labels": [],
       "body": "There should probably be a recommendation for a media type for the JWT Authorization Grant, because:\r\n\r\n* cross-JWT confusion\r\n* the token request `grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer` needs to know how to process the JWT authorization differently from other uses of JWT-Bearer\r\n\r\nRFC 7523 was published before the more recent recommendation of [explicit typing](https://datatracker.ietf.org/doc/html/rfc8725#name-use-explicit-typing)\r\n\r\nI don't think this draft needs to _define_ one, but it should at least recommend that an implementation uses one.",
       "createdAt": "2024-02-27T23:12:57Z",
-      "updatedAt": "2024-02-27T23:35:16Z",
+      "updatedAt": "2024-03-01T22:17:45Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "bc-pi",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "In my own defense - RFC 7523 was published _several years_ before RFC8725...\r\n\r\nAnyway, such a recommendation (and maybe even definition of one) seems reasonable as long as it doesn't suggest or imply that plain vanilla RFC 7523 implementations/deployments (new or existing) can't function as-is or are problematic security-wise or otherwise somehow deficient. ",
+          "createdAt": "2024-03-01T22:17:31Z",
+          "updatedAt": "2024-03-01T22:17:45Z"
+        }
+      ]
     }
   ],
   "pulls": [
